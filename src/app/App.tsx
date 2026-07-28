@@ -4,6 +4,7 @@ import { StoreProvider } from "./data/store";
 import { PublicLayout } from "./components/site/PublicLayout";
 import { HomePage } from "./pages/HomePage";
 import { AlbumDetailPage } from "./pages/AlbumDetailPage";
+import { DonorsPage } from "./pages/DonorsPage";
 import { LoginPage } from "./pages/admin/LoginPage";
 import { AdminLayout } from "./pages/admin/AdminLayout";
 import { DashboardPage } from "./pages/admin/DashboardPage";
@@ -23,6 +24,7 @@ export default function App() {
           <Route element={<PublicLayout />}>
             <Route path="/" element={<HomePage />} />
             <Route path="/album/:id" element={<AlbumDetailPage />} />
+            <Route path="/donatur" element={<DonorsPage />} />
           </Route>
 
           <Route path="/admin/login" element={<LoginPage />} />
