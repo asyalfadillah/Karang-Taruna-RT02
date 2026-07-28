@@ -43,7 +43,7 @@ export function LoginPage() {
           <h1 className="text-4xl leading-tight" style={{ fontWeight: 800 }}>Panel Admin<br />Karang Taruna RT 02</h1>
           <p className="mt-4 text-white/70 max-w-md">Kelola album, foto, dan video dokumentasi Kegiatan Kemerdekaan dengan mudah dan aman.</p>
         </div>
-        <p className="relative text-sm text-white/50">© 2026 Remaja Karang Taruna RT 02</p>
+        <p className="relative text-sm text-white/50">© 2026 Diki Fadillah Rafsan Jani</p>
       </div>
 
       {/* right form */}
