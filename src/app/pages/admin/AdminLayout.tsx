@@ -33,7 +33,7 @@ export function AdminLayout() {
       <div className="flex items-center gap-3 p-6 border-b border-white/10">
         <span className="grid place-items-center size-10 rounded-xl bg-white/10"><Flag className="size-5 text-[#D4AF37]" /></span>
         <div className="leading-tight">
-          <p className="text-white text-sm" style={{ fontWeight: 700, fontFamily: "var(--font-heading)" }}>Admin RT 02</p>
+          <p className="text-white text-sm" style={{ fontWeight: 700, fontFamily: "var(--font-heading)" }}>Admin Diki Fadillah</p>
           <p className="text-white/50 text-xs">Panel Dokumentasi</p>
         </div>
       </div>
