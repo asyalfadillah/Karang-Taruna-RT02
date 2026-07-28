@@ -41,9 +41,9 @@ export function LoginPage() {
         <div className="relative">
           <span className="grid place-items-center size-16 rounded-2xl bg-white/10 mb-6"><ShieldCheck className="size-8 text-[#D4AF37]" /></span>
           <h1 className="text-4xl leading-tight" style={{ fontWeight: 800 }}>Panel Admin<br />Karang Taruna RT 02</h1>
-          <p className="mt-4 text-white/70 max-w-md">Kelola album, foto, dan video dokumentasi HUT RI & Panggung Kemerdekaan dengan mudah dan aman.</p>
+          <p className="mt-4 text-white/70 max-w-md">Kelola album, foto, dan video dokumentasi Kegiatan Kemerdekaan dengan mudah dan aman.</p>
         </div>
-        <p className="relative text-sm text-white/50">© 2026 Remaja Karang Taruna RT 02</p>
+        <p className="relative text-sm text-white/50">© 2026 Diki Fadillah Rafsan Jani</p>
       </div>
 
       {/* right form */}
@@ -90,7 +90,7 @@ export function LoginPage() {
                 <button type="button" onClick={() => setForgot(true)} className="text-[#0F4C81] hover:text-[#D32F2F]">Lupa Password?</button>
               </div>
               <button disabled={busy} className="w-full py-3 rounded-xl bg-[#D32F2F] text-white hover:bg-[#b71c1c] transition shadow-lg disabled:opacity-60" style={{ fontWeight: 600 }}>{busy ? "Memproses…" : "Masuk"}</button>
-              <p className="text-xs text-center text-muted-foreground bg-[#F5F7FA] rounded-lg py-2">Login: username <b>admin</b> / sandi <b>201204</b></p>
+              <p className="text-xs text-center text-muted-foreground bg-[#F5F7FA] rounded-lg py-2">Login: username <b></b> / sandi <b></b></p>
             </form>
           )}
         </motion.div>
