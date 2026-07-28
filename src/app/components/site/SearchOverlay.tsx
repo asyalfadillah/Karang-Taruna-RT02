@@ -17,7 +17,7 @@ interface Result {
   albumId: string;
 }
 
-const POPULAR = ["Panggung Kemerdekaan", "Panjat Pinang", "Lomba Anak", "Pembagian Hadiah"];
+const POPULAR = ["Panggung Kemerdekaan", "Lomba 17an"];
 
 export function SearchOverlay({ open, onClose }: { open: boolean; onClose: () => void }) {
   const { albums, photos, videos } = useStore();
