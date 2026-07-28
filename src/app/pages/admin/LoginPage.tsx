@@ -41,7 +41,7 @@ export function LoginPage() {
         <div className="relative">
           <span className="grid place-items-center size-16 rounded-2xl bg-white/10 mb-6"><ShieldCheck className="size-8 text-[#D4AF37]" /></span>
           <h1 className="text-4xl leading-tight" style={{ fontWeight: 800 }}>Panel Admin<br />Karang Taruna RT 02</h1>
-          <p className="mt-4 text-white/70 max-w-md">Kelola album, foto, dan video dokumentasi HUT RI & Panggung Kemerdekaan dengan mudah dan aman.</p>
+          <p className="mt-4 text-white/70 max-w-md">Kelola album, foto, dan video dokumentasi Kegiatan Kemerdekaan dengan mudah dan aman.</p>
         </div>
         <p className="relative text-sm text-white/50">© 2026 Remaja Karang Taruna RT 02</p>
       </div>
