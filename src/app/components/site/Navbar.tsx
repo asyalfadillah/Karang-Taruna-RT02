@@ -45,8 +45,8 @@ export function Navbar({ onSearch }: { onSearch: () => void }) {
       <div className="max-w-7xl mx-auto px-4 md:px-8 flex items-center justify-between">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-3" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
-          <span className="grid place-items-center size-11 rounded-xl bg-gradient-to-br from-[#0F4C81] to-[#D32F2F] text-white shadow-lg">
-            <Flag className="size-6" />
+          <span className="grid place-items-center size-11 rounded-xl overflow-hidden bg-white shadow-lg">
+            <img src="/logo.png" alt="Logo Karang Taruna RT 02" className="size-full object-contain p-0.5" />
           </span>
           <span className="leading-tight">
             <span className={`block text-sm ${scrolled ? "text-[#0F4C81]" : "text-white"}`} style={{ fontWeight: 700, fontFamily: "var(--font-heading)" }}>
