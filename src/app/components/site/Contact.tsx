@@ -2,9 +2,9 @@ import { MapPin, Phone, Instagram, Mail } from "lucide-react";
 import { Reveal, SectionHeading } from "./Reveal";
 
 const CONTACTS = [
-  { icon: Phone, label: "WhatsApp", value: "+62 812-3456-7890", href: "https://wa.me/6281234567890", color: "#25D366" },
+  { icon: Phone, label: "WhatsApp", value: "+62 811-1111-1111", href: "https://wa.me/62811111111", color: "#25D366" },
   { icon: Instagram, label: "Instagram", value: "@karangtaruna.rt02", href: "https://instagram.com", color: "#E1306C" },
-  { icon: Mail, label: "Email", value: "karangtaruna.rt02@gmail.com", href: "mailto:karangtaruna.rt02@gmail.com", color: "#0F4C81" },
+  { icon: Mail, label: "Email", value: "karangtarunakalibata02@gmail.com", href: "mailto:karangtarunakalibata02@gmail.com", color: "#0F4C81" },
 ];
 
 export function Contact() {
