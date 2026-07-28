@@ -9,6 +9,7 @@ const LINKS = [
   { label: "Kalender", to: "#kalender" },
   { label: "Galeri", to: "#galeri" },
   { label: "Video", to: "#video" },
+  { label: "Donatur", to: "#donatur" },
   { label: "Kontak", to: "#kontak" },
 ];
 
