@@ -1,7 +1,7 @@
 
   # Web dokum RT 02
 
-  This is a code bundle for Web dokum RT 02. The original project is available at https://www.figma.com/design/uBmwEaVEAQg7d1cpP6EorB/Web-dokum-RT-02.
+  This is a code bundle for Web dokum RT 02. The original project is available
 
   ## Running the code
 
