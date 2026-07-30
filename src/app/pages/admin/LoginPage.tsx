@@ -90,7 +90,7 @@ export function LoginPage() {
                 <button type="button" onClick={() => setForgot(true)} className="text-[#0F4C81] hover:text-[#D32F2F]">Lupa Password?</button>
               </div>
               <button disabled={busy} className="w-full py-3 rounded-xl bg-[#D32F2F] text-white hover:bg-[#b71c1c] transition shadow-lg disabled:opacity-60" style={{ fontWeight: 600 }}>{busy ? "Memproses…" : "Masuk"}</button>
-              <p className="text-xs text-center text-muted-foreground bg-[#F5F7FA] rounded-lg py-2">Login: username <b>admin</b> / sandi <b>201204</b></p>
+              <p className="text-xs text-center text-muted-foreground bg-[#F5F7FA] rounded-lg py-2">Login: username <b></b> / sandi <b></b></p>
             </form>
           )}
         </motion.div>
