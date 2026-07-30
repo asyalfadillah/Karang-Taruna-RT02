@@ -42,7 +42,7 @@ export function Footer() {
             <a href="https://wa.me/6281234567890" target="_blank" rel="noreferrer" className="grid place-items-center size-10 rounded-lg bg-white/10 hover:bg-[#25D366] transition"><Phone className="size-5" /></a>
             <a href="mailto:karangtaruna.rt02@gmail.com" className="grid place-items-center size-10 rounded-lg bg-white/10 hover:bg-[#D4AF37] transition"><Mail className="size-5" /></a>
           </div>
-          <Link to="/admin/login" className="inline-block mt-6 text-sm text-white/60 hover:text-white transition">Login Admin →</Link>
+          
         </div>
 
         <div>

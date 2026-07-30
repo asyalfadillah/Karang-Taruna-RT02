@@ -34,7 +34,7 @@ export function DashboardPage() {
           <h1 className="text-2xl text-[#0F4C81]" style={{ fontWeight: 700 }}>Dashboard</h1>
           <p className="text-muted-foreground text-sm">Selamat datang kembali, Diki Fadillah 👋</p>
         </div>
-        <Link to="/admin/albums" className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#D32F2F] text-white hover:bg-[#b71c1c] transition shadow-lg" style={{ fontWeight: 600 }}>
+        <Link to="/adminrt02/albums" className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#D32F2F] text-white hover:bg-[#b71c1c] transition shadow-lg" style={{ fontWeight: 600 }}>
           <Plus className="size-5" /> Tambah Album
         </Link>
       </div>
@@ -82,7 +82,7 @@ export function DashboardPage() {
           <h3 className="text-[#0F4C81] mb-4" style={{ fontWeight: 600 }}>Album Terbaru</h3>
           <div className="space-y-3">
             {albums.slice(0, 5).map((a) => (
-              <Link key={a.id} to="/admin/albums" className="flex items-center gap-3 p-2 rounded-xl hover:bg-[#F5F7FA] transition">
+              <Link key={a.id} to="/adminrt02/albums" className="flex items-center gap-3 p-2 rounded-xl hover:bg-[#F5F7FA] transition">
                 <img src={a.cover} alt={a.name} className="size-12 rounded-lg object-cover" />
                 <div className="min-w-0 flex-1">
                   <p className="text-sm truncate" style={{ fontWeight: 500 }}>{a.name}</p>

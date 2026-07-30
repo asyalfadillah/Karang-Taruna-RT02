@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
-import { Search, Menu, X, ShieldCheck, Flag } from "lucide-react";
+import { Search, Menu, X, Flag } from "lucide-react";
 
 const LINKS = [
   { label: "Beranda", to: "#beranda" },
@@ -81,12 +81,6 @@ export function Navbar({ onSearch }: { onSearch: () => void }) {
           >
             <Search className="size-5" />
           </button>
-          <Link
-            to="/admin/login"
-            className="hidden sm:flex items-center gap-2 px-4 py-2 rounded-lg bg-[#D32F2F] text-white text-sm hover:bg-[#b71c1c] transition shadow"
-          >
-            <ShieldCheck className="size-4" /> Login Admin
-          </Link>
           <button
             onClick={() => setMobileOpen((v) => !v)}
             className={`lg:hidden grid place-items-center size-10 rounded-lg ${scrolled ? "text-[#0F4C81]" : "text-white"}`}
@@ -109,9 +103,6 @@ export function Navbar({ onSearch }: { onSearch: () => void }) {
               {l.label}
             </button>
           ))}
-          <Link to="/admin/login" onClick={() => setMobileOpen(false)} className="flex items-center gap-2 px-5 py-3 text-[#D32F2F]">
-            <ShieldCheck className="size-4" /> Login Admin
-          </Link>
         </div>
       )}
     </header>

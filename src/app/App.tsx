@@ -28,8 +28,8 @@ export default function App() {
             <Route path="/donatur" element={<DonorsPage />} />
           </Route>
 
-          <Route path="/admin/login" element={<LoginPage />} />
-          <Route path="/admin" element={<AdminLayout />}>
+          <Route path="/adminrt02/login" element={<LoginPage />} />
+          <Route path="/adminrt02" element={<AdminLayout />}>
             <Route index element={<DashboardPage />} />
             <Route path="albums" element={<AlbumsPage />} />
             <Route path="photos" element={<PhotosPage />} />

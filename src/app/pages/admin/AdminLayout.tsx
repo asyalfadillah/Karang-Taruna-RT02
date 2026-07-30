@@ -5,15 +5,15 @@ import { toast } from "sonner";
 import { useStore } from "../../data/store";
 
 const NAV = [
-  { to: "/admin", label: "Dashboard", icon: LayoutDashboard, end: true },
-  { to: "/admin/albums", label: "Album Dokumentasi", icon: FolderOpen },
-  { to: "/admin/photos", label: "Foto", icon: ImageIcon },
-  { to: "/admin/videos", label: "Video", icon: Film },
-  { to: "/admin/gallery", label: "Galeri", icon: GalleryHorizontal },
-  { to: "/admin/events", label: "Kalender Kegiatan", icon: CalendarDays },
-  { to: "/admin/comments", label: "Komentar Warga", icon: MessageCircle },
-  { to: "/admin/settings", label: "Pengaturan", icon: Settings },
-  { to: "/admin/profile", label: "Profil Admin", icon: UserCog },
+  { to: "/adminrt02", label: "Dashboard", icon: LayoutDashboard, end: true },
+  { to: "/adminrt02/albums", label: "Album Dokumentasi", icon: FolderOpen },
+  { to: "/adminrt02/photos", label: "Foto", icon: ImageIcon },
+  { to: "/adminrt02/videos", label: "Video", icon: Film },
+  { to: "/adminrt02/gallery", label: "Galeri", icon: GalleryHorizontal },
+  { to: "/adminrt02/events", label: "Kalender Kegiatan", icon: CalendarDays },
+  { to: "/adminrt02/comments", label: "Komentar Warga", icon: MessageCircle },
+  { to: "/adminrt02/settings", label: "Pengaturan", icon: Settings },
+  { to: "/adminrt02/profile", label: "Profil Admin", icon: UserCog },
 ];
 
 export function AdminLayout() {
@@ -21,7 +21,7 @@ export function AdminLayout() {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
 
-  if (!isAuthed) return <Navigate to="/admin/login" replace />;
+  if (!isAuthed) return <Navigate to="/adminrt02/login" replace />;
 
   const doLogout = () => {
     logout();
