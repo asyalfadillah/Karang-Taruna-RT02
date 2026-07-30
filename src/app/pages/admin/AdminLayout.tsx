@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { NavLink, Outlet, useNavigate, Navigate, Link } from "react-router";
-import { LayoutDashboard, FolderOpen, Image as ImageIcon, Film, GalleryHorizontal, Settings, UserCog, LogOut, Menu, X, ExternalLink, Flag, CalendarDays } from "lucide-react";
+import { LayoutDashboard, FolderOpen, Image as ImageIcon, Film, GalleryHorizontal, Settings, UserCog, LogOut, Menu, X, ExternalLink, Flag, CalendarDays, MessageCircle } from "lucide-react";
 import { toast } from "sonner";
 import { useStore } from "../../data/store";
 
@@ -11,6 +11,7 @@ const NAV = [
   { to: "/admin/videos", label: "Video", icon: Film },
   { to: "/admin/gallery", label: "Galeri", icon: GalleryHorizontal },
   { to: "/admin/events", label: "Kalender Kegiatan", icon: CalendarDays },
+  { to: "/admin/comments", label: "Komentar Warga", icon: MessageCircle },
   { to: "/admin/settings", label: "Pengaturan", icon: Settings },
   { to: "/admin/profile", label: "Profil Admin", icon: UserCog },
 ];
@@ -33,7 +34,7 @@ export function AdminLayout() {
       <div className="flex items-center gap-3 p-6 border-b border-white/10">
         <span className="grid place-items-center size-10 rounded-xl bg-white/10"><Flag className="size-5 text-[#D4AF37]" /></span>
         <div className="leading-tight">
-          <p className="text-white text-sm" style={{ fontWeight: 700, fontFamily: "var(--font-heading)" }}>Admin Diki Fadillah</p>
+          <p className="text-white text-sm" style={{ fontWeight: 700, fontFamily: "var(--font-heading)" }}>Admin RT 02</p>
           <p className="text-white/50 text-xs">Panel Dokumentasi</p>
         </div>
       </div>

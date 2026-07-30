@@ -85,12 +85,20 @@ export interface AgendaEvent {
 
 export const isAutoEvent = (e: AgendaEvent) => e.type !== "custom";
 
+export interface Comment {
+  id: string;
+  name: string;
+  message: string;
+  createdAt: string;
+}
+
 interface Store {
   albums: Album[];
   photos: Photo[];
   videos: Video[];
   customEvents: AgendaEvent[];
   events: AgendaEvent[]; // gabungan custom + hari nasional
+  comments: Comment[];
   visitors: number;
   loading: boolean;
   isAuthed: boolean;
@@ -111,6 +119,8 @@ interface Store {
   addEvent: (e: Omit<AgendaEvent, "id" | "type">) => void;
   updateEvent: (id: string, e: Partial<AgendaEvent>) => void;
   deleteEvent: (id: string) => void;
+  addComment: (name: string, message: string) => Promise<void>;
+  deleteComment: (id: string) => void;
 }
 
 /* ------------------------------------------------------------------ */
@@ -238,6 +248,7 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
   const [photos, setPhotos] = usePersisted<Photo[]>("rt02_photos_v2", []);
   const [videos, setVideos] = usePersisted<Video[]>("rt02_videos_v2", []);
   const [customEvents, setCustomEvents] = usePersisted<AgendaEvent[]>("rt02_events_v2", []);
+  const [comments, setComments] = usePersisted<Comment[]>("rt02_comments_v2", []);
   const [autoPrefs, setAutoPrefs] = usePersisted<Record<string, boolean>>("rt02_auto_prefs_v2", {});
   const [visitors, setVisitors] = usePersisted<number>("rt02_visitors_v2", 0);
   const [isAuthed, setIsAuthed] = usePersisted<boolean>("rt02_auth_v2", false);
@@ -252,6 +263,7 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
       setPhotos(d.photos || []);
       setVideos(d.videos || []);
       setCustomEvents(d.customEvents || []);
+      setComments(d.comments || []);
       setAutoPrefs(d.autoPrefs || {});
       setVisitors(d.visitors || 0);
     } catch (err) {
@@ -259,7 +271,7 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
     } finally {
       setLoading(false);
     }
-  }, [setAlbums, setPhotos, setVideos, setCustomEvents, setAutoPrefs, setVisitors]);
+  }, [setAlbums, setPhotos, setVideos, setCustomEvents, setComments, setAutoPrefs, setVisitors]);
 
   // Muat data + hitung kunjungan sekali per sesi.
   useEffect(() => {
@@ -306,6 +318,7 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
       videos,
       customEvents,
       events,
+      comments,
       visitors,
       loading,
       isAuthed,
@@ -413,8 +426,26 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
         setCustomEvents((p) => p.filter((x) => x.id !== id));
         withServer(() => api(`/event/${id}`, { method: "DELETE", secret }), "Gagal menghapus kegiatan");
       },
+
+      addComment: async (name, message) => {
+        // Publik: tidak butuh secret admin. Optimistic update + sinkron nyata dari server.
+        const temp: Comment = { id: `temp-${Date.now()}`, name, message, createdAt: new Date().toISOString() };
+        setComments((p) => [temp, ...p]);
+        try {
+          const item = await api("/comment", { method: "POST", body: { name, message } });
+          setComments((p) => p.map((c) => (c.id === temp.id ? item : c)));
+        } catch (err) {
+          setComments((p) => p.filter((c) => c.id !== temp.id));
+          toast.error(`Gagal mengirim komentar: ${err instanceof Error ? err.message : err}`);
+          throw err;
+        }
+      },
+      deleteComment: (id) => {
+        setComments((p) => p.filter((x) => x.id !== id));
+        withServer(() => api(`/comment/${id}`, { method: "DELETE", secret }), "Gagal menghapus komentar");
+      },
     }),
-    [albums, photos, videos, customEvents, events, isAuthed, visitors, loading, secret, refresh, withServer, setAlbums, setPhotos, setVideos, setCustomEvents, setAutoPrefs, setIsAuthed, setSecret]
+    [albums, photos, videos, customEvents, events, comments, isAuthed, visitors, loading, secret, refresh, withServer, setAlbums, setPhotos, setVideos, setCustomEvents, setComments, setAutoPrefs, setIsAuthed, setSecret]
   );
 
   return <StoreContext.Provider value={value}>{children}</StoreContext.Provider>;

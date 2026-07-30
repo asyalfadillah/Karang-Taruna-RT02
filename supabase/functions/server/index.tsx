@@ -73,11 +73,12 @@ app.post(`${P}/change-password`, async (c) => {
 /* ---- ambil semua data (publik) ---------------------------------------- */
 app.get(`${P}/data`, async (c) => {
   try {
-    const [albums, photos, videos, events] = await Promise.all([
+    const [albums, photos, videos, events, comments] = await Promise.all([
       kv.getByPrefix("album:"),
       kv.getByPrefix("photo:"),
       kv.getByPrefix("video:"),
       kv.getByPrefix("event:"),
+      kv.getByPrefix("comment:"),
     ]);
     const autoPrefs = (await kv.get("autoprefs")) || {};
     const visitors = (await kv.get("visitors")) || 0;
@@ -86,6 +87,7 @@ app.get(`${P}/data`, async (c) => {
       photos: photos || [],
       videos: videos || [],
       customEvents: events || [],
+      comments: (comments || []).sort((a: any, b: any) => (b.createdAt || "").localeCompare(a.createdAt || "")),
       autoPrefs,
       visitors,
     });
@@ -207,6 +209,38 @@ app.delete(`${P}/album/:id`, async (c) => {
     return c.json({ ok: true });
   } catch (err) {
     console.log(`Delete album error: ${err}`);
+    return c.json({ error: `${err}` }, 500);
+  }
+});
+
+/* ---- komentar (kirim publik, hapus khusus admin) ---------------------- */
+app.post(`${P}/comment`, async (c) => {
+  try {
+    const body = await c.req.json();
+    const name = String(body.name || "").trim().slice(0, 60);
+    const message = String(body.message || "").trim().slice(0, 500);
+    if (!name || !message) {
+      return c.json({ error: "Nama dan komentar wajib diisi." }, 400);
+    }
+    const id = uid();
+    const item = { id, name, message, createdAt: new Date().toISOString() };
+    await kv.set(`comment:${id}`, item);
+    return c.json(item);
+  } catch (err) {
+    console.log(`Create comment error: ${err}`);
+    return c.json({ error: `${err}` }, 500);
+  }
+});
+
+app.delete(`${P}/comment/:id`, async (c) => {
+  const unauth = await requireAdmin(c);
+  if (unauth) return unauth;
+  try {
+    const id = c.req.param("id");
+    await kv.del(`comment:${id}`);
+    return c.json({ ok: true });
+  } catch (err) {
+    console.log(`Delete comment error: ${err}`);
     return c.json({ error: `${err}` }, 500);
   }
 });

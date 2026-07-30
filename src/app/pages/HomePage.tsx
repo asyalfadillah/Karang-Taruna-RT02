@@ -7,6 +7,7 @@ import { Kalender } from "../components/site/Kalender";
 import { PhotoGallery } from "../components/site/PhotoGallery";
 import { VideoGallery } from "../components/site/VideoGallery";
 import { Donors } from "../components/site/Donors";
+import { Comments } from "../components/site/Comments";
 import { Contact } from "../components/site/Contact";
 import { useSearch } from "../components/site/PublicLayout";
 
@@ -30,6 +31,7 @@ export function HomePage() {
       <PhotoGallery />
       <VideoGallery />
       <Donors />
+      <Comments />
       <Contact />
     </>
   );
