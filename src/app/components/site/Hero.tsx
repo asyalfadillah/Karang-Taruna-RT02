@@ -1,24 +1,15 @@
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useState } from "react";
 import { Search, Images, PlayCircle } from "lucide-react";
-import { HERO_SLIDES, useStore } from "../../data/store";
-import { Counter } from "./Counter";
+import { HERO_SLIDES } from "../../data/store";
 
 export function Hero({ onSearch }: { onSearch: () => void }) {
-  const { albums, photos, videos } = useStore();
   const [idx, setIdx] = useState(0);
 
   useEffect(() => {
     const t = setInterval(() => setIdx((i) => (i + 1) % HERO_SLIDES.length), 5000);
     return () => clearInterval(t);
   }, []);
-
-  const stats = [
-    { label: "Total Album", value: albums.length },
-    { label: "Total Foto", value: photos.length },
-    { label: "Total Video", value: videos.length },
-    { label: "Tahun Kegiatan", value: new Set([...albums].map((a) => a.date.slice(0, 4))).size },
-  ];
 
   const scrollTo = (hash: string) => document.querySelector(hash)?.scrollIntoView({ behavior: "smooth" });
 
@@ -79,24 +70,6 @@ export function Hero({ onSearch }: { onSearch: () => void }) {
             </button>
           </div>
         </motion.div>
-
-        {/* stats */}
-        <div className="mt-8 md:mt-16 grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 max-w-4xl">
-          {stats.map((s, i) => (
-            <motion.div
-              key={s.label}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 + i * 0.1 }}
-              className="rounded-2xl bg-white/10 border border-white/20 backdrop-blur px-5 py-6 text-center"
-            >
-              <div className="text-3xl md:text-4xl text-[#D4AF37]" style={{ fontWeight: 800 }}>
-                <Counter to={s.value} />+
-              </div>
-              <div className="mt-1 text-sm text-white/80">{s.label}</div>
-            </motion.div>
-          ))}
-        </div>
       </div>
 
       {/* slide dots */}
