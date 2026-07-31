@@ -290,6 +290,16 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  // Auto-sync berkala: biar upload foto/video/komentar baru muncul sendiri tanpa perlu refresh manual.
+  // Cuma jalan saat tab sedang aktif dilihat (hemat kuota & baterai HP).
+  useEffect(() => {
+    const id = setInterval(() => {
+      if (document.visibilityState === "visible") refresh();
+    }, 15000);
+    return () => clearInterval(id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   // Helper: jalankan mutasi server, tampilkan error & sinkron ulang jika gagal.
   const withServer = useCallback(
     async (fn: () => Promise<void>, errMsg: string) => {

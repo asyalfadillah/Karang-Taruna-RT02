@@ -16,6 +16,7 @@ export function AlbumDetailPage() {
   const [tab, setTab] = useState<"foto" | "video">("foto");
   const [lightbox, setLightbox] = useState<number | null>(null);
   const [activeVideo, setActiveVideo] = useState<Video | null>(null);
+  const [visiblePhotos, setVisiblePhotos] = useState(3);
 
   if (!album) {
     return (
@@ -84,22 +85,35 @@ export function AlbumDetailPage() {
           (albumPhotos.length === 0 ? (
             <p className="text-muted-foreground py-10 text-center">Belum ada foto pada album ini.</p>
           ) : (
-            <ResponsiveMasonry columnsCountBreakPoints={{ 350: 1, 640: 2, 1024: 3 }}>
-              <Masonry gutter="20px">
-                {albumPhotos.map((p, i) => (
-                  <div key={p.id} className="relative group rounded-2xl overflow-hidden cursor-pointer" onClick={() => setLightbox(i)}>
-                    <img src={p.url} alt={p.title} loading="lazy" className="w-full object-cover group-hover:scale-110 transition-transform duration-700" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition flex items-end p-4">
-                      <p className="text-white text-sm" style={{ fontWeight: 600 }}>{p.title}</p>
+            <>
+              <ResponsiveMasonry columnsCountBreakPoints={{ 350: 1, 640: 2, 1024: 3 }}>
+                <Masonry gutter="20px">
+                  {albumPhotos.slice(0, visiblePhotos).map((p, i) => (
+                    <div key={p.id} className="relative group rounded-2xl overflow-hidden cursor-pointer" onClick={() => setLightbox(i)}>
+                      <img src={p.url} alt={p.title} loading="lazy" className="w-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition flex items-end p-4">
+                        <p className="text-white text-sm" style={{ fontWeight: 600 }}>{p.title}</p>
+                      </div>
+                      <div className="absolute top-3 right-3 flex gap-2 opacity-0 group-hover:opacity-100 transition">
+                        <span className="grid place-items-center size-9 rounded-full bg-white/90 text-[#0F4C81]"><ZoomIn className="size-4" /></span>
+                        <a href={p.url} download target="_blank" rel="noreferrer" onClick={(e) => e.stopPropagation()} className="grid place-items-center size-9 rounded-full bg-white/90 text-[#0F4C81] hover:bg-[#D4AF37] hover:text-white transition"><Download className="size-4" /></a>
+                      </div>
                     </div>
-                    <div className="absolute top-3 right-3 flex gap-2 opacity-0 group-hover:opacity-100 transition">
-                      <span className="grid place-items-center size-9 rounded-full bg-white/90 text-[#0F4C81]"><ZoomIn className="size-4" /></span>
-                      <a href={p.url} download target="_blank" rel="noreferrer" onClick={(e) => e.stopPropagation()} className="grid place-items-center size-9 rounded-full bg-white/90 text-[#0F4C81] hover:bg-[#D4AF37] hover:text-white transition"><Download className="size-4" /></a>
-                    </div>
-                  </div>
-                ))}
-              </Masonry>
-            </ResponsiveMasonry>
+                  ))}
+                </Masonry>
+              </ResponsiveMasonry>
+              {visiblePhotos < albumPhotos.length && (
+                <div className="text-center mt-8">
+                  <button
+                    onClick={() => setVisiblePhotos((v) => v + 3)}
+                    className="px-8 py-3 rounded-xl bg-[#0F4C81] text-white hover:bg-[#D32F2F] transition shadow-lg"
+                    style={{ fontWeight: 600 }}
+                  >
+                    Muat Lebih Banyak ({albumPhotos.length - visiblePhotos} lagi)
+                  </button>
+                </div>
+              )}
+            </>
           ))}
 
         {tab === "video" &&

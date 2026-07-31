@@ -41,11 +41,11 @@ export function Countdown({ date, compact }: { date: string; compact?: boolean }
   }
 
   return (
-    <div className="flex gap-2">
+    <div className="flex gap-1.5">
       {items.map((i) => (
-        <div key={i.l} className="flex-1 rounded-xl bg-white/10 border border-white/20 backdrop-blur px-2 py-3 text-center">
-          <div className="text-2xl text-white" style={{ fontWeight: 800 }}>{String(i.v).padStart(2, "0")}</div>
-          <div className="text-[11px] text-white/70 uppercase tracking-wide">{i.l}</div>
+        <div key={i.l} className="flex-1 rounded-lg bg-white/10 border border-white/20 backdrop-blur px-1.5 py-1.5 text-center">
+          <div className="text-base text-white" style={{ fontWeight: 800 }}>{String(i.v).padStart(2, "0")}</div>
+          <div className="text-[9px] text-white/70 uppercase tracking-wide">{i.l}</div>
         </div>
       ))}
     </div>

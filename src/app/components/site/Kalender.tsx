@@ -27,7 +27,7 @@ export function Kalender() {
 
   const upcoming = useMemo(() => {
     const todayStr = new Date().toISOString().slice(0, 10);
-    return events.filter((e) => e.date >= todayStr).slice(0, 6);
+    return events.filter((e) => e.date >= todayStr).slice(0, 4);
   }, [events]);
 
   const countdowns = useMemo(() => {
@@ -65,15 +65,15 @@ export function Kalender() {
 
         {/* countdown cards */}
         {countdowns.length > 0 && (
-          <div className="grid md:grid-cols-3 gap-5 mb-10">
+          <div className="grid md:grid-cols-3 gap-3 mb-8">
             {countdowns.map((e, i) => (
               <Reveal key={e.id} delay={i * 0.1}>
-                <div className="rounded-2xl p-6 bg-gradient-to-br from-[#0F4C81] to-[#0b3660] text-white shadow-lg h-full">
+                <div className="rounded-xl p-4 bg-gradient-to-br from-[#0F4C81] to-[#0b3660] text-white shadow-lg h-full">
                   <div className="flex items-center gap-2 mb-1">
-                    <EventIcon type={e.type} className="size-4 text-[#D4AF37]" />
-                    <span className="text-xs text-white/70">{formatDate(e.date)}</span>
+                    <EventIcon type={e.type} className="size-3.5 text-[#D4AF37]" />
+                    <span className="text-[11px] text-white/70">{formatDate(e.date)}</span>
                   </div>
-                  <h3 className="mb-4 line-clamp-1" style={{ fontWeight: 700 }}>{e.title}</h3>
+                  <h3 className="mb-3 text-sm line-clamp-1" style={{ fontWeight: 700 }}>{e.title}</h3>
                   <Countdown date={e.date} />
                 </div>
               </Reveal>
