@@ -14,6 +14,7 @@ import { VideosPage } from "./pages/admin/VideosPage";
 import { GalleryPage } from "./pages/admin/GalleryPage";
 import { EventsPage } from "./pages/admin/EventsPage";
 import { CommentsPage } from "./pages/admin/CommentsPage";
+import { ReportsPage } from "./pages/admin/ReportsPage";
 import { SettingsPage } from "./pages/admin/SettingsPage";
 import { ProfilePage } from "./pages/admin/ProfilePage";
 
@@ -37,6 +38,7 @@ export default function App() {
             <Route path="gallery" element={<GalleryPage />} />
             <Route path="events" element={<EventsPage />} />
             <Route path="comments" element={<CommentsPage />} />
+            <Route path="reports" element={<ReportsPage />} />
             <Route path="settings" element={<SettingsPage />} />
             <Route path="profile" element={<ProfilePage />} />
           </Route>

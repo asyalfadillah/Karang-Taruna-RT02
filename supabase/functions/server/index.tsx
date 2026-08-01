@@ -73,12 +73,13 @@ app.post(`${P}/change-password`, async (c) => {
 /* ---- ambil semua data (publik) ---------------------------------------- */
 app.get(`${P}/data`, async (c) => {
   try {
-    const [albums, photos, videos, events, comments] = await Promise.all([
+    const [albums, photos, videos, events, comments, reports] = await Promise.all([
       kv.getByPrefix("album:"),
       kv.getByPrefix("photo:"),
       kv.getByPrefix("video:"),
       kv.getByPrefix("event:"),
       kv.getByPrefix("comment:"),
+      kv.getByPrefix("report:"),
     ]);
     const autoPrefs = (await kv.get("autoprefs")) || {};
     const visitors = (await kv.get("visitors")) || 0;
@@ -88,6 +89,7 @@ app.get(`${P}/data`, async (c) => {
       videos: videos || [],
       customEvents: events || [],
       comments: (comments || []).sort((a: any, b: any) => (b.createdAt || "").localeCompare(a.createdAt || "")),
+      reports: reports || [],
       autoPrefs,
       visitors,
     });
@@ -160,6 +162,7 @@ function crud(name: string, prefix: string) {
 crud("photo", "photo:");
 crud("video", "video:");
 crud("event", "event:");
+crud("report", "report:");
 
 /* ---- album (dengan cascade delete foto/video) ------------------------- */
 app.post(`${P}/album`, async (c) => {
