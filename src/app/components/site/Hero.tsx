@@ -25,7 +25,7 @@ export function Hero({ onSearch }: { onSearch: () => void }) {
           exit={{ opacity: 0 }}
           transition={{ duration: 1.2 }}
         >
-          <img src={HERO_SLIDES[idx].image} alt={HERO_SLIDES[idx].title} className="size-full object-cover" />
+          <img src={HERO_SLIDES[idx].image} alt={HERO_SLIDES[idx].title} className="size-full object-cover" fetchPriority="high" decoding="async" />
         </motion.div>
       </AnimatePresence>
       <div className="absolute inset-0 bg-gradient-to-b from-[#0F4C81]/85 via-[#0F4C81]/70 to-[#0b3660]/90" />
