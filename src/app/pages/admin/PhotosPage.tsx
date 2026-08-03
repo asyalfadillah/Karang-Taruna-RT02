@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import { Upload, Pencil, Trash2, Star, Search } from "lucide-react";
 import { toast } from "sonner";
 import { useStore, formatDate, type Photo } from "../../data/store";
+import { compressImage } from "../../data/imageCompress";
 import { Modal, ConfirmDialog, Field, inputClass } from "./ui";
 
 export function PhotosPage() {
@@ -20,12 +21,13 @@ export function PhotosPage() {
       if (!albumId) toast.error("Pilih album terlebih dahulu.");
       return;
     }
-    Array.from(files).forEach((file) => {
-      const reader = new FileReader();
-      reader.onload = () => {
-        addPhoto({ albumId, url: reader.result as string, title: file.name.replace(/\.[^.]+$/, ""), caption: "", tags: [], date: new Date().toISOString().slice(0, 10) });
-      };
-      reader.readAsDataURL(file);
+    Array.from(files).forEach(async (file) => {
+      try {
+        const url = await compressImage(file);
+        addPhoto({ albumId, url, title: file.name.replace(/\.[^.]+$/, ""), caption: "", tags: [], date: new Date().toISOString().slice(0, 10) });
+      } catch {
+        toast.error(`Gagal memproses foto ${file.name}.`);
+      }
     });
     toast.success(`${files.length} foto berhasil diunggah.`);
   };

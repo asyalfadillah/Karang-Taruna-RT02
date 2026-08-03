@@ -3,6 +3,7 @@ import { Link } from "react-router";
 import { Plus, Pencil, Trash2, Image as ImageIcon, Film, Search } from "lucide-react";
 import { toast } from "sonner";
 import { useStore, formatDate, countMedia, type Album } from "../../data/store";
+import { compressImage } from "../../data/imageCompress";
 import { Modal, ConfirmDialog, Field, inputClass } from "./ui";
 
 const empty = { name: "", description: "", date: new Date().toISOString().slice(0, 10), cover: "", status: "draft" as const, driveLink: "" };
@@ -39,11 +40,14 @@ export function AlbumsPage() {
     setModal(false);
   };
 
-  const onFile = (file?: File) => {
+  const onFile = async (file?: File) => {
     if (!file) return;
-    const reader = new FileReader();
-    reader.onload = () => setForm((f) => ({ ...f, cover: reader.result as string }));
-    reader.readAsDataURL(file);
+    try {
+      const url = await compressImage(file, 800, 0.78);
+      setForm((f) => ({ ...f, cover: url }));
+    } catch {
+      toast.error("Gagal memproses gambar sampul.");
+    }
   };
 
   const filtered = albums.filter((a) => a.name.toLowerCase().includes(q.toLowerCase()));

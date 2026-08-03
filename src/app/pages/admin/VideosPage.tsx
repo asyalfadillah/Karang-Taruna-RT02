@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Plus, Pencil, Trash2, Play } from "lucide-react";
 import { toast } from "sonner";
 import { useStore, formatDate, type Video } from "../../data/store";
+import { compressImage } from "../../data/imageCompress";
 import { Modal, ConfirmDialog, Field, inputClass } from "./ui";
 
 const empty = (albumId: string): Omit<Video, "id"> => ({
@@ -34,11 +35,14 @@ export function VideosPage() {
     setModal(false);
   };
 
-  const onThumb = (file?: File) => {
+  const onThumb = async (file?: File) => {
     if (!file) return;
-    const r = new FileReader();
-    r.onload = () => setForm((f) => ({ ...f, thumbnail: r.result as string }));
-    r.readAsDataURL(file);
+    try {
+      const url = await compressImage(file, 800, 0.78);
+      setForm((f) => ({ ...f, thumbnail: url }));
+    } catch {
+      toast.error("Gagal memproses thumbnail.");
+    }
   };
 
   const albumName = (id: string) => albums.find((a) => a.id === id)?.name ?? "-";

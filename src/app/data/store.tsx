@@ -100,7 +100,8 @@ export interface Report {
   year: number;
   fileType: ReportFileType;
   fileName: string;
-  fileUrl: string; // data URL (base64) atau link eksternal (Google Drive, dll)
+  fileUrl: string; // URL Firebase Storage (atau data URL lama untuk laporan sebelumnya)
+  storagePath?: string; // path di Firebase Storage, dipakai saat menghapus file
   createdAt: string;
 }
 
@@ -143,9 +144,9 @@ interface Store {
 /* ------------------------------------------------------------------ */
 
 const IMG = {
-  crowd: "https://images.unsplash.com/photo-1566409031818-9508be68fc74?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1600",
-  village1: "https://images.unsplash.com/photo-1542897643-cfccd88c7127?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1600",
-  parade: "https://images.unsplash.com/photo-1701590219284-c3cce0148be1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1600",
+  crowd: "https://images.unsplash.com/photo-1566409031818-9508be68fc74?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=68&w=1200",
+  village1: "https://images.unsplash.com/photo-1542897643-cfccd88c7127?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=68&w=1200",
+  parade: "https://images.unsplash.com/photo-1701590219284-c3cce0148be1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=68&w=1200",
 };
 
 export const HERO_SLIDES = [
