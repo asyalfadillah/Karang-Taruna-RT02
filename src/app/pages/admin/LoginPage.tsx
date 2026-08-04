@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router";
 import { AnimatePresence, motion, motion as m } from "motion/react";
 import { ShieldCheck, User, Lock, Eye, EyeOff, ArrowLeft, AlertTriangle, X } from "lucide-react";
 import { toast } from "sonner";
-import { useStore } from "../../data/store";
+import { useStore, HERO_SLIDES } from "../../data/store";
 
 export function LoginPage() {
   const { login } = useStore();
@@ -15,6 +15,12 @@ export function LoginPage() {
   const [forgot, setForgot] = useState(false);
   const [error, setError] = useState(false);
   const [busy, setBusy] = useState(false);
+  const [bgIdx, setBgIdx] = useState(0);
+
+  useEffect(() => {
+    const t = setInterval(() => setBgIdx((i) => (i + 1) % HERO_SLIDES.length), 5000);
+    return () => clearInterval(t);
+  }, []);
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -34,7 +40,20 @@ export function LoginPage() {
   return (
     <div className="min-h-screen grid lg:grid-cols-2">
       {/* left brand */}
-      <div className="relative hidden lg:flex flex-col justify-between p-12 text-white overflow-hidden bg-gradient-to-br from-[#0F4C81] to-[#0b3660]">
+      <div className="relative hidden lg:flex flex-col justify-between p-12 text-white overflow-hidden">
+        <AnimatePresence mode="sync">
+          <motion.img
+            key={bgIdx}
+            src={HERO_SLIDES[bgIdx].image}
+            alt=""
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1 }}
+            className="absolute inset-0 size-full object-cover"
+          />
+        </AnimatePresence>
+        <div className="absolute inset-0 bg-gradient-to-br from-[#0F4C81]/92 to-[#0b3660]/95" />
         <div className="absolute -top-20 -right-20 size-80 rounded-full bg-[#D32F2F]/20 blur-3xl" />
         <div className="absolute bottom-0 -left-20 size-80 rounded-full bg-[#D4AF37]/20 blur-3xl" />
         <Link to="/" className="relative flex items-center gap-2 text-white/80 hover:text-white text-sm"><ArrowLeft className="size-4" /> Kembali ke Website</Link>
@@ -90,7 +109,7 @@ export function LoginPage() {
                 <button type="button" onClick={() => setForgot(true)} className="text-[#0F4C81] hover:text-[#D32F2F]">Lupa Password?</button>
               </div>
               <button disabled={busy} className="w-full py-3 rounded-xl bg-[#D32F2F] text-white hover:bg-[#b71c1c] transition shadow-lg disabled:opacity-60" style={{ fontWeight: 600 }}>{busy ? "Memproses…" : "Masuk"}</button>
-              <p className="text-xs text-center text-muted-foreground bg-[#F5F7FA] rounded-lg py-2">Login: username <b></b> / sandi <b></b></p>
+              <p className="text-xs text-center text-muted-foreground bg-[#F5F7FA] rounded-lg py-2">Login: username <b>admin</b> / sandi <b>201204</b></p>
             </form>
           )}
         </motion.div>
