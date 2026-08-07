@@ -105,6 +105,16 @@ export interface Report {
   createdAt: string;
 }
 
+export interface Poster {
+  id: string;
+  title: string;
+  imageUrl: string; // data URL (base64) hasil kompresi
+  link?: string; // opsional: link tujuan kalau poster diklik
+  active: boolean; // kalau true, ikut ditampilkan (section & popup)
+  showAsPopup: boolean; // kalau true, poster ini yang muncul sebagai popup di beranda
+  createdAt: string;
+}
+
 interface Store {
   albums: Album[];
   photos: Photo[];
@@ -113,6 +123,7 @@ interface Store {
   events: AgendaEvent[]; // gabungan custom + hari nasional
   comments: Comment[];
   reports: Report[];
+  posters: Poster[];
   visitors: number;
   loading: boolean;
   isAuthed: boolean;
@@ -137,6 +148,9 @@ interface Store {
   deleteComment: (id: string) => void;
   addReport: (r: Omit<Report, "id" | "createdAt">) => void;
   deleteReport: (id: string) => void;
+  addPoster: (p: Omit<Poster, "id" | "createdAt">) => void;
+  updatePoster: (id: string, patch: Partial<Poster>) => void;
+  deletePoster: (id: string) => void;
 }
 
 /* ------------------------------------------------------------------ */
@@ -266,6 +280,7 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
   const [customEvents, setCustomEvents] = usePersisted<AgendaEvent[]>("rt02_events_v2", []);
   const [comments, setComments] = usePersisted<Comment[]>("rt02_comments_v2", []);
   const [reports, setReports] = usePersisted<Report[]>("rt02_reports_v1", []);
+  const [posters, setPosters] = usePersisted<Poster[]>("rt02_posters_v1", []);
   const [autoPrefs, setAutoPrefs] = usePersisted<Record<string, boolean>>("rt02_auto_prefs_v2", {});
   const [visitors, setVisitors] = usePersisted<number>("rt02_visitors_v2", 0);
   const [isAuthed, setIsAuthed] = usePersisted<boolean>("rt02_auth_v2", false);
@@ -282,6 +297,7 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
       setCustomEvents(d.customEvents || []);
       setComments(d.comments || []);
       setReports(d.reports || []);
+      setPosters(d.posters || []);
       setAutoPrefs(d.autoPrefs || {});
       setVisitors(d.visitors || 0);
     } catch (err) {
@@ -289,7 +305,7 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
     } finally {
       setLoading(false);
     }
-  }, [setAlbums, setPhotos, setVideos, setCustomEvents, setComments, setReports, setAutoPrefs, setVisitors]);
+  }, [setAlbums, setPhotos, setVideos, setCustomEvents, setComments, setReports, setPosters, setAutoPrefs, setVisitors]);
 
   // Muat data + hitung kunjungan sekali per sesi.
   useEffect(() => {
@@ -348,6 +364,7 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
       events,
       comments,
       reports,
+      posters,
       visitors,
       loading,
       isAuthed,
@@ -484,8 +501,23 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
         setReports((p) => p.filter((x) => x.id !== id));
         withServer(() => api(`/report/${id}`, { method: "DELETE", secret }), "Gagal menghapus laporan");
       },
+
+      addPoster: (p) => {
+        const id = uid();
+        const item: Poster = { ...p, id, createdAt: new Date().toISOString() };
+        setPosters((prev) => [item, ...prev]);
+        withServer(() => api("/poster", { method: "POST", secret, body: item }), "Gagal menyimpan poster");
+      },
+      updatePoster: (id, patch) => {
+        setPosters((prev) => prev.map((x) => (x.id === id ? { ...x, ...patch } : x)));
+        withServer(() => api(`/poster/${id}`, { method: "PUT", secret, body: patch }), "Gagal memperbarui poster");
+      },
+      deletePoster: (id) => {
+        setPosters((prev) => prev.filter((x) => x.id !== id));
+        withServer(() => api(`/poster/${id}`, { method: "DELETE", secret }), "Gagal menghapus poster");
+      },
     }),
-    [albums, photos, videos, customEvents, events, comments, reports, isAuthed, visitors, loading, secret, refresh, withServer, setAlbums, setPhotos, setVideos, setCustomEvents, setComments, setReports, setAutoPrefs, setIsAuthed, setSecret]
+    [albums, photos, videos, customEvents, events, comments, reports, posters, isAuthed, visitors, loading, secret, refresh, withServer, setAlbums, setPhotos, setVideos, setCustomEvents, setComments, setReports, setPosters, setAutoPrefs, setIsAuthed, setSecret]
   );
 
   return <StoreContext.Provider value={value}>{children}</StoreContext.Provider>;

@@ -5,6 +5,7 @@ import { About } from "../components/site/About";
 import { Documentation } from "../components/site/Documentation";
 import { Kalender } from "../components/site/Kalender";
 import { PhotoGallery } from "../components/site/PhotoGallery";
+import { PosterSection, PosterPopup } from "../components/site/Poster";
 import { VideoGallery } from "../components/site/VideoGallery";
 import { FinancialReports } from "../components/site/FinancialReports";
 import { Donors } from "../components/site/Donors";
@@ -25,11 +26,13 @@ export function HomePage() {
 
   return (
     <>
+      <PosterPopup />
       <Hero onSearch={openSearch} />
       <About />
       <Documentation onSearch={openSearch} />
       <Kalender />
       <PhotoGallery />
+      <PosterSection />
       <VideoGallery />
       <FinancialReports />
       <Donors />

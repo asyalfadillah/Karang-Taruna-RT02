@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { NavLink, Outlet, useNavigate, Navigate, Link } from "react-router";
-import { LayoutDashboard, FolderOpen, Image as ImageIcon, Film, GalleryHorizontal, Settings, UserCog, LogOut, Menu, X, ExternalLink, Flag, CalendarDays, MessageCircle, Wallet } from "lucide-react";
+import { LayoutDashboard, FolderOpen, Image as ImageIcon, Film, GalleryHorizontal, Settings, UserCog, LogOut, Menu, X, ExternalLink, Flag, CalendarDays, MessageCircle, Wallet, Megaphone } from "lucide-react";
 import { toast } from "sonner";
 import { useStore } from "../../data/store";
 
@@ -13,6 +13,7 @@ const NAV = [
   { to: "/adminrt02/events", label: "Kalender Kegiatan", icon: CalendarDays },
   { to: "/adminrt02/comments", label: "Komentar Warga", icon: MessageCircle },
   { to: "/adminrt02/reports", label: "Laporan Keuangan", icon: Wallet },
+  { to: "/adminrt02/posters", label: "Poster Informasi", icon: Megaphone },
   { to: "/adminrt02/settings", label: "Pengaturan", icon: Settings },
   { to: "/adminrt02/profile", label: "Profil Admin", icon: UserCog },
 ];
