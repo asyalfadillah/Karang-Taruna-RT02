@@ -1,9 +1,9 @@
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useState } from "react";
-import { Search, Images, PlayCircle } from "lucide-react";
+import { Images } from "lucide-react";
 import { HERO_SLIDES } from "../../data/store";
 
-export function Hero({ onSearch }: { onSearch: () => void }) {
+export function Hero() {
   const [idx, setIdx] = useState(0);
 
   useEffect(() => {
@@ -43,16 +43,6 @@ export function Hero({ onSearch }: { onSearch: () => void }) {
             Mengabadikan setiap momen kegiatan HUT RI dan Panggung Kemerdekaan yang diselenggarakan oleh Remaja Karang Taruna RT 02.
           </p>
 
-          {/* search bar */}
-          <button
-            onClick={onSearch}
-            className="mt-6 md:mt-8 w-full max-w-xl flex items-center gap-3 bg-white rounded-full pl-5 pr-2 py-2 shadow-2xl text-left group"
-          >
-            <Search className="size-5 text-[#0F4C81]" />
-            <span className="flex-1 text-muted-foreground">Cari foto, video, atau album dokumentasi...</span>
-            <span className="px-4 py-2 rounded-full bg-[#0F4C81] text-white text-sm group-hover:bg-[#D32F2F] transition">Cari</span>
-          </button>
-
           <div className="mt-6 md:mt-8 flex flex-wrap gap-3 md:gap-4">
             <button
               onClick={() => scrollTo("#dokumentasi")}
@@ -60,13 +50,6 @@ export function Hero({ onSearch }: { onSearch: () => void }) {
               style={{ fontWeight: 600 }}
             >
               <Images className="size-5" /> Lihat Dokumentasi
-            </button>
-            <button
-              onClick={() => scrollTo("#video")}
-              className="flex items-center gap-2 px-6 py-3 rounded-xl bg-white/10 border border-white/30 text-white hover:bg-white/20 transition backdrop-blur"
-              style={{ fontWeight: 600 }}
-            >
-              <PlayCircle className="size-5" /> Tonton Video
             </button>
           </div>
         </motion.div>

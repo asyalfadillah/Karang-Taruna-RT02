@@ -27,7 +27,7 @@ export function HomePage() {
   return (
     <>
       <PosterPopup />
-      <Hero onSearch={openSearch} />
+      <Hero />
       <About />
       <Documentation onSearch={openSearch} />
       <Kalender />
