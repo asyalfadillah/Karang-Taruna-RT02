@@ -2,9 +2,11 @@ import { useEffect, useState } from "react";
 import { X, Megaphone } from "lucide-react";
 import { Reveal, SectionHeading } from "./Reveal";
 import { useStore } from "../../data/store";
+import { useLang } from "../../i18n/i18n";
 
 /** Section "Poster Informasi" — grid poster aktif, ditaruh di tengah alur halaman. */
 export function PosterSection() {
+  const { t } = useLang();
   const { posters } = useStore();
   const active = posters.filter((p) => p.active);
   if (active.length === 0) return null;
@@ -13,7 +15,7 @@ export function PosterSection() {
     <section id="poster-informasi" className="py-24 bg-[#F5F7FA]">
       <div className="max-w-5xl mx-auto px-4 md:px-8">
         <Reveal>
-          <SectionHeading eyebrow="Pengumuman" title="Poster Informasi" desc="Info dan pengumuman terbaru seputar kegiatan RT 02." />
+          <SectionHeading eyebrow={t("poster.eyebrow")} title={t("poster.title")} desc={t("poster.desc")} />
         </Reveal>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {active.map((p, i) => {

@@ -3,35 +3,37 @@ import { toast } from "sonner";
 import { MessageCircle, Send, User } from "lucide-react";
 import { Reveal, SectionHeading } from "./Reveal";
 import { useStore } from "../../data/store";
-
-function timeAgo(iso: string) {
-  const diff = Date.now() - new Date(iso).getTime();
-  const min = Math.floor(diff / 60000);
-  if (min < 1) return "Baru saja";
-  if (min < 60) return `${min} menit lalu`;
-  const hr = Math.floor(min / 60);
-  if (hr < 24) return `${hr} jam lalu`;
-  const day = Math.floor(hr / 24);
-  return `${day} hari lalu`;
-}
+import { useLang } from "../../i18n/i18n";
 
 export function Comments() {
+  const { t } = useLang();
   const { comments, addComment } = useStore();
   const [name, setName] = useState("");
   const [message, setMessage] = useState("");
   const [sending, setSending] = useState(false);
 
+  function timeAgo(iso: string) {
+    const diff = Date.now() - new Date(iso).getTime();
+    const min = Math.floor(diff / 60000);
+    if (min < 1) return t("comments.justNow");
+    if (min < 60) return `${min} ${t("comments.minAgo")}`;
+    const hr = Math.floor(min / 60);
+    if (hr < 24) return `${hr} ${t("comments.hrAgo")}`;
+    const day = Math.floor(hr / 24);
+    return `${day} ${t("comments.dayAgo")}`;
+  }
+
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!name.trim() || !message.trim()) {
-      toast.error("Nama dan komentar wajib diisi.");
+      toast.error(t("comments.errRequired"));
       return;
     }
     setSending(true);
     try {
       await addComment(name.trim(), message.trim());
       setMessage("");
-      toast.success("Komentar terkirim, terima kasih!");
+      toast.success(t("comments.success"));
     } catch {
       // error sudah ditampilkan di store
     } finally {
@@ -44,9 +46,9 @@ export function Comments() {
       <div className="max-w-3xl mx-auto px-4 md:px-8">
         <Reveal>
           <SectionHeading
-            eyebrow="Kolom Komentar"
-            title="Tinggalkan Pesan atau Kesan"
-            desc="Sampaikan komentar, saran, atau kesan kamu tentang kegiatan RT 02 di sini."
+            eyebrow={t("comments.eyebrow")}
+            title={t("comments.title")}
+            desc={t("comments.desc")}
           />
         </Reveal>
 
@@ -55,14 +57,14 @@ export function Comments() {
             <input
               value={name}
               onChange={(e) => setName(e.target.value)}
-              placeholder="Nama kamu"
+              placeholder={t("comments.namePlaceholder")}
               maxLength={60}
               className="w-full rounded-xl border border-black/10 bg-white px-4 py-2.5 outline-none focus:border-[#0F4C81]"
             />
             <textarea
               value={message}
               onChange={(e) => setMessage(e.target.value)}
-              placeholder="Tulis komentar kamu..."
+              placeholder={t("comments.msgPlaceholder")}
               maxLength={500}
               rows={3}
               className="w-full rounded-xl border border-black/10 bg-white px-4 py-2.5 outline-none focus:border-[#0F4C81] resize-none"
@@ -73,7 +75,7 @@ export function Comments() {
               className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#0F4C81] text-white hover:bg-[#0b3660] transition disabled:opacity-50"
               style={{ fontWeight: 600 }}
             >
-              <Send className="size-4" /> {sending ? "Mengirim..." : "Kirim Komentar"}
+              <Send className="size-4" /> {sending ? t("comments.sending") : t("comments.send")}
             </button>
           </form>
         </Reveal>
@@ -82,7 +84,7 @@ export function Comments() {
           {comments.length === 0 ? (
             <p className="text-center text-muted-foreground text-sm py-8 flex flex-col items-center gap-2">
               <MessageCircle className="size-6 opacity-40" />
-              Belum ada komentar. Jadilah yang pertama!
+              {t("comments.empty")}
             </p>
           ) : (
             comments.map((c, i) => (

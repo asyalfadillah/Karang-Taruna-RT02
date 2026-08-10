@@ -3,6 +3,7 @@ import { Search, X, Mic, Image as ImageIcon, Film, FolderOpen, Clock, TrendingUp
 import { useMemo, useState } from "react";
 import { useNavigate } from "react-router";
 import { useStore, formatDate } from "../../data/store";
+import { useLang } from "../../i18n/i18n";
 
 type Filter = "semua" | "album" | "foto" | "video";
 type Sort = "terbaru" | "terlama" | "az" | "za";
@@ -20,6 +21,7 @@ interface Result {
 const POPULAR = ["Panggung Kemerdekaan", "Lomba 17an"];
 
 export function SearchOverlay({ open, onClose }: { open: boolean; onClose: () => void }) {
+  const { t } = useLang();
   const { albums, photos, videos } = useStore();
   const [query, setQuery] = useState("");
   const [filter, setFilter] = useState<Filter>("semua");
@@ -123,7 +125,7 @@ export function SearchOverlay({ open, onClose }: { open: boolean; onClose: () =>
                 autoFocus
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder="Cari foto, video, atau album dokumentasi..."
+                placeholder={t("search.placeholder")}
                 className="flex-1 bg-transparent outline-none text-base"
               />
               <button className="text-muted-foreground hover:text-[#D32F2F] transition" aria-label="Pencarian suara">
@@ -145,7 +147,7 @@ export function SearchOverlay({ open, onClose }: { open: boolean; onClose: () =>
                       filter === f ? "bg-[#0F4C81] text-white" : "bg-white text-muted-foreground hover:bg-[#0F4C81]/10"
                     }`}
                   >
-                    {f}
+                    {t(`search.filters.${f}`)}
                   </button>
                 ))}
               </div>
@@ -154,10 +156,10 @@ export function SearchOverlay({ open, onClose }: { open: boolean; onClose: () =>
                 onChange={(e) => setSort(e.target.value as Sort)}
                 className="text-sm bg-white rounded-lg px-3 py-1 border border-black/10 outline-none"
               >
-                <option value="terbaru">Terbaru</option>
-                <option value="terlama">Terlama</option>
-                <option value="az">A - Z</option>
-                <option value="za">Z - A</option>
+                <option value="terbaru">{t("search.sortLatest")}</option>
+                <option value="terlama">{t("search.sortOldest")}</option>
+                <option value="az">{t("search.sortAz")}</option>
+                <option value="za">{t("search.sortZa")}</option>
               </select>
             </div>
 
@@ -182,10 +184,10 @@ export function SearchOverlay({ open, onClose }: { open: boolean; onClose: () =>
                 <div className="p-5 grid sm:grid-cols-2 gap-6">
                   <div>
                     <p className="flex items-center gap-2 text-sm text-muted-foreground mb-2">
-                      <Clock className="size-4" /> Pencarian Terakhir
+                      <Clock className="size-4" /> {t("search.recent")}
                     </p>
                     {recent.length === 0 ? (
-                      <p className="text-sm text-muted-foreground/60">Belum ada.</p>
+                      <p className="text-sm text-muted-foreground/60">{t("search.noRecent")}</p>
                     ) : (
                       <div className="flex flex-wrap gap-2">
                         {recent.map((r) => (
@@ -198,7 +200,7 @@ export function SearchOverlay({ open, onClose }: { open: boolean; onClose: () =>
                   </div>
                   <div>
                     <p className="flex items-center gap-2 text-sm text-muted-foreground mb-2">
-                      <TrendingUp className="size-4" /> Pencarian Populer
+                      <TrendingUp className="size-4" /> {t("search.popular")}
                     </p>
                     <div className="flex flex-wrap gap-2">
                       {POPULAR.map((r) => (
@@ -213,7 +215,7 @@ export function SearchOverlay({ open, onClose }: { open: boolean; onClose: () =>
 
               {/* results */}
               {query.trim() && results.length === 0 && (
-                <div className="p-10 text-center text-muted-foreground">Dokumentasi yang Anda cari tidak ditemukan.</div>
+                <div className="p-10 text-center text-muted-foreground">{t("search.notFound")}</div>
               )}
 
               {query.trim() &&

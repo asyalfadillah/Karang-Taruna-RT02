@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import { FileSpreadsheet, FileText, File as FileIcon, Download, ChevronDown, Wallet, X, Eye } from "lucide-react";
 import { Reveal, SectionHeading } from "./Reveal";
 import { useStore, type Report, type ReportFileType } from "../../data/store";
+import { useLang } from "../../i18n/i18n";
 
 const FILE_META: Record<ReportFileType, { label: string; icon: typeof FileText; color: string }> = {
   xlsx: { label: "Excel", icon: FileSpreadsheet, color: "#1D6F42" },
@@ -11,6 +12,7 @@ const FILE_META: Record<ReportFileType, { label: string; icon: typeof FileText; 
 };
 
 function PreviewModal({ report, onClose }: { report: Report; onClose: () => void }) {
+  const { t } = useLang();
   const meta = FILE_META[report.fileType] || FILE_META.other;
   return (
     <div className="fixed inset-0 z-[100] bg-black/70 flex items-center justify-center p-4" onClick={onClose}>
@@ -21,7 +23,7 @@ function PreviewModal({ report, onClose }: { report: Report; onClose: () => void
         <div className="flex items-center justify-between gap-3 p-4 border-b border-black/5">
           <div className="min-w-0">
             <p className="truncate" style={{ fontWeight: 700 }}>{report.title}</p>
-            <p className="text-xs text-muted-foreground">Format {meta.label} &middot; Tahun {report.year}</p>
+            <p className="text-xs text-muted-foreground">{t("reports.format")} {meta.label} &middot; {t("reports.year")} {report.year}</p>
           </div>
           <button onClick={onClose} className="grid place-items-center size-9 shrink-0 rounded-lg hover:bg-black/5 transition">
             <X className="size-5" />
@@ -37,7 +39,7 @@ function PreviewModal({ report, onClose }: { report: Report; onClose: () => void
                 <FileText className="size-8" />
               </span>
               <p className="text-muted-foreground text-sm max-w-sm">
-                Pratinjau langsung belum didukung untuk file {meta.label}. Silakan unduh untuk melihat isinya.
+                {t("reports.noPreview")} {meta.label}. {t("reports.downloadInstead")}
               </p>
             </div>
           )}
@@ -47,10 +49,12 @@ function PreviewModal({ report, onClose }: { report: Report; onClose: () => void
           <a
             href={report.fileUrl}
             download={report.fileName}
+            target="_blank"
+            rel="noreferrer"
             className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl bg-[#0F4C81] text-white hover:bg-[#0b3660] transition"
             style={{ fontWeight: 600 }}
           >
-            <Download className="size-4" /> Unduh {meta.label}
+            <Download className="size-4" /> {t("reports.download")} {meta.label}
           </a>
         </div>
       </div>
@@ -59,6 +63,7 @@ function PreviewModal({ report, onClose }: { report: Report; onClose: () => void
 }
 
 function ReportRow({ r, onOpen }: { r: Report; onOpen: () => void }) {
+  const { t } = useLang();
   const meta = FILE_META[r.fileType] || FILE_META.other;
   const Icon = meta.icon;
   return (
@@ -71,7 +76,7 @@ function ReportRow({ r, onOpen }: { r: Report; onOpen: () => void }) {
       </span>
       <div className="min-w-0 flex-1">
         <p className="text-sm text-[#0F4C81] truncate" style={{ fontWeight: 600 }}>{r.title}</p>
-        <p className="text-xs text-muted-foreground">Format {meta.label}</p>
+        <p className="text-xs text-muted-foreground">{t("reports.format")} {meta.label}</p>
       </div>
       <Eye className="size-4 text-muted-foreground shrink-0 group-hover:text-[#0F4C81] transition" />
     </button>
@@ -79,6 +84,7 @@ function ReportRow({ r, onOpen }: { r: Report; onOpen: () => void }) {
 }
 
 export function FinancialReports() {
+  const { t } = useLang();
   const { reports } = useStore();
   const byYear = useMemo(() => {
     const map = new Map<number, Report[]>();
@@ -99,9 +105,9 @@ export function FinancialReports() {
       <div className="max-w-4xl mx-auto px-4 md:px-8">
         <Reveal>
           <SectionHeading
-            eyebrow="Transparansi"
-            title="Laporan Keuangan"
-            desc="Laporan pemasukan dan pengeluaran kegiatan RT 02, dikelompokkan per tahun. Silakan unduh untuk melihat rincian lengkapnya."
+            eyebrow={t("reports.eyebrow")}
+            title={t("reports.title")}
+            desc={t("reports.desc")}
           />
         </Reveal>
 
@@ -120,8 +126,8 @@ export function FinancialReports() {
                         <Wallet className="size-5" />
                       </span>
                       <span>
-                        <span className="block text-[#0F4C81]" style={{ fontWeight: 700 }}>Tahun {year}</span>
-                        <span className="block text-xs text-muted-foreground">{list.length} dokumen</span>
+                        <span className="block text-[#0F4C81]" style={{ fontWeight: 700 }}>{t("reports.year")} {year}</span>
+                        <span className="block text-xs text-muted-foreground">{list.length} {t("reports.docs")}</span>
                       </span>
                     </span>
                     <ChevronDown className={`size-5 text-[#0F4C81] transition-transform ${open ? "rotate-180" : ""}`} />

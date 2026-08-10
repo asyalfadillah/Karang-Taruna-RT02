@@ -1,23 +1,24 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
-import { Search, Menu, X, Flag } from "lucide-react";
-
-const LINKS = [
-  { label: "Beranda", to: "#beranda" },
-  { label: "Tentang", to: "#tentang" },
-  { label: "Dokumentasi", to: "#dokumentasi" },
-  { label: "Kalender", to: "#kalender" },
-  { label: "Galeri", to: "#galeri" },
-  { label: "Video", to: "#video" },
-  { label: "Donatur", to: "#donatur" },
-  { label: "Kontak", to: "#kontak" },
-];
+import { Search, Menu, X, Globe } from "lucide-react";
+import { useLang, LANGUAGES } from "../../i18n/i18n";
 
 export function Navbar({ onSearch }: { onSearch: () => void }) {
+  const { t, lang, setLang } = useLang();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [langOpen, setLangOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
+
+  const LINKS = [
+    { label: t("nav.beranda"), to: "#beranda" },
+    { label: t("nav.tentang"), to: "#tentang" },
+    { label: t("nav.dokumentasi"), to: "#dokumentasi" },
+    { label: t("nav.kalender"), to: "#kalender" },
+    { label: t("nav.donatur"), to: "#donatur" },
+    { label: t("nav.kontak"), to: "#kontak" },
+  ];
 
   useEffect(() => {
     const h = () => setScrolled(window.scrollY > 30);
@@ -72,6 +73,37 @@ export function Navbar({ onSearch }: { onSearch: () => void }) {
         </nav>
 
         <div className="flex items-center gap-2">
+          {/* Language switcher */}
+          <div className="relative">
+            <button
+              onClick={() => setLangOpen((v) => !v)}
+              className={`flex items-center gap-1.5 px-2.5 h-10 rounded-lg text-sm transition ${
+                scrolled ? "hover:bg-[#0F4C81]/10 text-[#0F4C81]" : "hover:bg-white/20 text-white"
+              }`}
+              aria-label="Ganti bahasa"
+            >
+              <Globe className="size-5" />
+              <span className="hidden sm:inline uppercase text-xs" style={{ fontWeight: 700 }}>{lang}</span>
+            </button>
+            {langOpen && (
+              <div className="absolute right-0 mt-2 w-40 bg-white rounded-xl shadow-xl border border-black/5 overflow-hidden">
+                {LANGUAGES.map((l) => (
+                  <button
+                    key={l.code}
+                    onClick={() => {
+                      setLang(l.code);
+                      setLangOpen(false);
+                    }}
+                    className={`w-full text-left px-4 py-2.5 text-sm hover:bg-[#F5F7FA] transition ${lang === l.code ? "text-[#D32F2F]" : "text-foreground"}`}
+                    style={{ fontWeight: lang === l.code ? 600 : 400 }}
+                  >
+                    {l.native}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+
           <button
             onClick={onSearch}
             className={`grid place-items-center size-10 rounded-lg transition ${

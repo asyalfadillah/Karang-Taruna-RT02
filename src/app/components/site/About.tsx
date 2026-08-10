@@ -1,23 +1,22 @@
 import { Reveal, SectionHeading } from "./Reveal";
 import { Camera, Video, Archive, HeartHandshake } from "lucide-react";
-
-const FEATURES = [
-  { icon: Camera, title: "Arsip Foto", desc: "Kumpulan foto kegiatan yang tertata rapi per album." },
-  { icon: Video, title: "Galeri Video", desc: "Rekaman momen penting dalam format video." },
-  { icon: Archive, title: "Arsip Digital", desc: "Dokumentasi tersimpan aman dan mudah diakses." },
-  { icon: HeartHandshake, title: "Kebersamaan", desc: "Menjaga semangat gotong royong warga RT 02." },
-];
+import { useLang } from "../../i18n/i18n";
 
 export function About() {
+  const { t } = useLang();
+
+  const FEATURES = [
+    { icon: Camera, title: t("about.f1t"), desc: t("about.f1d") },
+    { icon: Video, title: t("about.f2t"), desc: t("about.f2d") },
+    { icon: Archive, title: t("about.f3t"), desc: t("about.f3d") },
+    { icon: HeartHandshake, title: t("about.f4t"), desc: t("about.f4d") },
+  ];
+
   return (
     <section id="tentang" className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <Reveal>
-          <SectionHeading
-            eyebrow="Tentang Dokumentasi"
-            title="Mengabadikan Semangat Kemerdekaan RT 02"
-            desc="Website ini berisi dokumentasi foto dan video kegiatan HUT RI serta Panggung Kemerdekaan yang diselenggarakan oleh Remaja Karang Taruna RT 02 sebagai arsip digital yang mudah diakses kapan saja."
-          />
+          <SectionHeading eyebrow={t("about.eyebrow")} title={t("about.title")} desc={t("about.desc")} />
         </Reveal>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {FEATURES.map((f, i) => (

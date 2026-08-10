@@ -3,9 +3,7 @@ import { ChevronLeft, ChevronRight, CalendarDays, Flag, Sparkles, Moon } from "l
 import { useStore, formatDate, type AgendaEvent } from "../../data/store";
 import { Reveal, SectionHeading } from "./Reveal";
 import { Countdown } from "./Countdown";
-
-const MONTHS = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
-const DOW = ["Min", "Sen", "Sel", "Rab", "Kam", "Jum", "Sab"];
+import { useLang } from "../../i18n/i18n";
 
 const EventIcon = ({ type, className }: { type: AgendaEvent["type"]; className?: string }) =>
   type === "national" ? <Flag className={className} /> : type === "islamic" ? <Moon className={className} /> : <Sparkles className={className} />;
@@ -13,6 +11,9 @@ const EventIcon = ({ type, className }: { type: AgendaEvent["type"]; className?:
 const eventBg = (type: AgendaEvent["type"]) => (type === "national" ? "#D32F2F" : type === "islamic" ? "#2e7d32" : "#D4AF37");
 
 export function Kalender() {
+  const { t, td } = useLang();
+  const MONTHS = td.kalender.months;
+  const DOW = td.kalender.dow;
   const { events } = useStore();
   const today = new Date();
   const [cursor, setCursor] = useState({ y: today.getFullYear(), m: today.getMonth() });
@@ -57,9 +58,9 @@ export function Kalender() {
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <Reveal>
           <SectionHeading
-            eyebrow="Agenda"
-            title="Kalender Kegiatan"
-            desc="Jadwal kegiatan Karang Taruna RT 02, hari besar nasional & Islam, dan hitung mundur menuju acara mendatang."
+            eyebrow={t("kalender.eyebrow")}
+            title={t("kalender.title")}
+            desc={t("kalender.desc")}
           />
         </Reveal>
 
@@ -120,9 +121,9 @@ export function Kalender() {
                 })}
               </div>
               <div className="mt-4 flex flex-wrap gap-4 text-xs text-muted-foreground">
-                <span className="flex items-center gap-1"><span className="size-3 rounded bg-[#D32F2F]/40" /> Hari Nasional</span>
-                <span className="flex items-center gap-1"><span className="size-3 rounded bg-green-300" /> Hari Besar Islam</span>
-                <span className="flex items-center gap-1"><span className="size-3 rounded bg-[#D4AF37]/50" /> Kegiatan RT 02</span>
+                <span className="flex items-center gap-1"><span className="size-3 rounded bg-[#D32F2F]/40" /> {t("kalender.legendNational")}</span>
+                <span className="flex items-center gap-1"><span className="size-3 rounded bg-green-300" /> {t("kalender.legendIslamic")}</span>
+                <span className="flex items-center gap-1"><span className="size-3 rounded bg-[#D4AF37]/50" /> {t("kalender.legendActivity")}</span>
               </div>
             </div>
           </Reveal>
@@ -130,9 +131,9 @@ export function Kalender() {
           {/* upcoming list */}
           <Reveal delay={0.1}>
             <div className="bg-white rounded-2xl border border-black/5 p-6 h-full">
-              <h3 className="text-[#0F4C81] mb-4" style={{ fontWeight: 600 }}>Agenda Mendatang</h3>
+              <h3 className="text-[#0F4C81] mb-4" style={{ fontWeight: 600 }}>{t("kalender.upcoming")}</h3>
               {upcoming.length === 0 ? (
-                <p className="text-sm text-muted-foreground">Belum ada agenda mendatang.</p>
+                <p className="text-sm text-muted-foreground">{t("kalender.noUpcoming")}</p>
               ) : (
                 <div className="space-y-3">
                   {upcoming.map((e) => (

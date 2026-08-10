@@ -1,5 +1,6 @@
 import { MapPin, Phone, Instagram, Mail } from "lucide-react";
 import { Reveal, SectionHeading } from "./Reveal";
+import { useLang } from "../../i18n/i18n";
 
 const CONTACTS = [
   { icon: Phone, label: "WhatsApp", value: "+62 811-1111-1111", href: "https://wa.me/62811111111", color: "#25D366" },
@@ -8,11 +9,12 @@ const CONTACTS = [
 ];
 
 export function Contact() {
+  const { t } = useLang();
   return (
     <section id="kontak" className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <Reveal>
-          <SectionHeading eyebrow="Kontak" title="Hubungi Kami" desc="Terhubung dengan Remaja Karang Taruna RT 02 melalui kanal berikut." />
+          <SectionHeading eyebrow={t("contact.eyebrow")} title={t("contact.title")} desc={t("contact.desc")} />
         </Reveal>
 
         <div className="grid lg:grid-cols-2 gap-8">
@@ -22,7 +24,7 @@ export function Contact() {
                 <div className="flex gap-4">
                   <span className="grid place-items-center size-12 rounded-xl bg-[#0F4C81] text-white shrink-0"><MapPin className="size-6" /></span>
                   <div>
-                    <h3 className="text-[#0F4C81]" style={{ fontWeight: 600 }}>Remaja Karang Taruna RT 02</h3>
+                    <h3 className="text-[#0F4C81]" style={{ fontWeight: 600 }}>{t("contact.orgName")}</h3>
                     <p className="mt-1 text-sm text-muted-foreground leading-relaxed">
                       Jl. Kalibata Tengah XVI, RT.02/RW.003,<br />
                       Kelurahan Kalibata, Kecamatan Pancoran,<br />

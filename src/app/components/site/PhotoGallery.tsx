@@ -4,8 +4,10 @@ import { ZoomIn, Download } from "lucide-react";
 import { useStore } from "../../data/store";
 import { Reveal, SectionHeading } from "./Reveal";
 import { Lightbox } from "./Lightbox";
+import { useLang } from "../../i18n/i18n";
 
 export function PhotoGallery() {
+  const { t } = useLang();
   const { photos } = useStore();
   const [visible, setVisible] = useState(8);
   const [lightbox, setLightbox] = useState<number | null>(null);
@@ -16,13 +18,13 @@ export function PhotoGallery() {
     <section id="galeri" className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <Reveal>
-          <SectionHeading eyebrow="Galeri Foto" title="Momen Terbaik" desc="Kumpulan foto pilihan dari berbagai kegiatan kami." />
+          <SectionHeading eyebrow={t("gallery.eyebrow")} title={t("gallery.title")} desc={t("gallery.desc")} />
         </Reveal>
 
         {photos.length === 0 && (
           <div className="text-center py-16 rounded-2xl border-2 border-dashed border-[#0F4C81]/20 bg-[#F5F7FA]">
-            <p className="text-lg text-[#0F4C81]" style={{ fontWeight: 600 }}>Galeri masih kosong</p>
-            <p className="text-muted-foreground mt-1">Foto akan diunggah oleh admin melalui panel CMS.</p>
+            <p className="text-lg text-[#0F4C81]" style={{ fontWeight: 600 }}>{t("gallery.empty")}</p>
+            <p className="text-muted-foreground mt-1">{t("gallery.emptySub")}</p>
           </div>
         )}
         <ResponsiveMasonry columnsCountBreakPoints={{ 350: 1, 640: 2, 1024: 3 }}>
@@ -55,7 +57,7 @@ export function PhotoGallery() {
               className="px-8 py-3 rounded-xl bg-[#0F4C81] text-white hover:bg-[#D32F2F] transition shadow-lg"
               style={{ fontWeight: 600 }}
             >
-              Muat Lebih Banyak
+              {t("gallery.loadMore")}
             </button>
           </div>
         )}
