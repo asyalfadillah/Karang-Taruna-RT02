@@ -5,14 +5,8 @@ import { useLang } from "../../i18n/i18n";
 // Ganti/tambah nama donatur di sini SAJA — otomatis kepakai di Beranda dan di halaman /donatur.
 // name = nama donatur, note = keterangan opsional (mis. "Warga Blok C1")
 export const DONORS: { name: string; note?: string }[] = [
-  { name: "Bapak Ahmad Fauzi", note: "Warga Blok A" },
-  { name: "Ibu Siti Rahayu", note: "Warga Blok B" },
-  { name: "Keluarga Bapak Hendra", note: "Warga Blok C" },
-  { name: "Ibu Dewi Lestari" },
-  { name: "Bapak Joko Susanto" },
-  { name: "Toko Sumber Rejeki" },
-  { name: "Keluarga Bapak Rudi Hartono" },
-  { name: "Ibu Ratna Sari" },
+  { name: "Warga RT.02/003" },
+  { name: "Warga RT.02/003", note: "Memiliki Usaha di lingkungan RT.02" },
 ];
 
 export function Donors() {
