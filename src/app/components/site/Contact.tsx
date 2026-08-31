@@ -1,10 +1,17 @@
-import { MapPin, Phone, Instagram, Mail } from "lucide-react";
+import { MapPin, Mail } from "lucide-react";
 import { Reveal, SectionHeading } from "./Reveal";
 import { useLang } from "../../i18n/i18n";
 
+function TikTokIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
+      <path d="M16.6 5.82c-.7-.76-1.09-1.75-1.09-2.82h-3.02v13.44c0 1.5-1.22 2.71-2.71 2.71s-2.71-1.22-2.71-2.71 1.22-2.71 2.71-2.71c.28 0 .55.04.8.12v-3.07c-.27-.04-.53-.06-.8-.06-3.16 0-5.73 2.57-5.73 5.73s2.57 5.73 5.73 5.73 5.73-2.57 5.73-5.73V9.01c1.14.82 2.53 1.3 4.03 1.3V7.29c-1.13 0-2.13-.36-2.94-1.47Z" />
+    </svg>
+  );
+}
+
 const CONTACTS = [
-  { icon: Phone, label: "WhatsApp", value: "+62 811-1111-1111", href: "https://wa.me/62811111111", color: "#25D366" },
-  { icon: Instagram, label: "Instagram", value: "@karangtaruna.rt02", href: "https://instagram.com", color: "#E1306C" },
+  { icon: TikTokIcon, label: "TikTok", value: "@comdoea", href: "https://www.tiktok.com/@comdoea", color: "#010101" },
   { icon: Mail, label: "Email", value: "karangtarunakalibata02@gmail.com", href: "mailto:karangtarunakalibata02@gmail.com", color: "#1C3A54" },
 ];
 

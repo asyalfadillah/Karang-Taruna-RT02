@@ -1,5 +1,13 @@
-import { Flag, Instagram, Phone, Mail, MapPin } from "lucide-react";
+import { Flag, Mail, MapPin } from "lucide-react";
 import { useLang } from "../../i18n/i18n";
+
+function TikTokIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
+      <path d="M16.6 5.82c-.7-.76-1.09-1.75-1.09-2.82h-3.02v13.44c0 1.5-1.22 2.71-2.71 2.71s-2.71-1.22-2.71-2.71 1.22-2.71 2.71-2.71c.28 0 .55.04.8.12v-3.07c-.27-.04-.53-.06-.8-.06-3.16 0-5.73 2.57-5.73 5.73s2.57 5.73 5.73 5.73 5.73-2.57 5.73-5.73V9.01c1.14.82 2.53 1.3 4.03 1.3V7.29c-1.13 0-2.13-.36-2.94-1.47Z" />
+    </svg>
+  );
+}
 
 export function Footer() {
   const { t } = useLang();
@@ -36,8 +44,7 @@ export function Footer() {
         <div>
           <h4 className="mb-4 text-[#A8802F]" style={{ fontWeight: 600 }}>{t("footer.social")}</h4>
           <div className="flex gap-3">
-            <a href="https://instagram.com" target="_blank" rel="noreferrer" className="grid place-items-center size-10 rounded-lg bg-white/10 hover:bg-[#9C2B2F] transition"><Instagram className="size-5" /></a>
-            <a href="https://wa.me/6281234567890" target="_blank" rel="noreferrer" className="grid place-items-center size-10 rounded-lg bg-white/10 hover:bg-[#25D366] transition"><Phone className="size-5" /></a>
+            <a href="https://www.tiktok.com/@comdoea" target="_blank" rel="noreferrer" className="grid place-items-center size-10 rounded-lg bg-white/10 hover:bg-[#010101] transition"><TikTokIcon className="size-5" /></a>
             <a href="mailto:karangtaruna.rt02@gmail.com" className="grid place-items-center size-10 rounded-lg bg-white/10 hover:bg-[#A8802F] transition"><Mail className="size-5" /></a>
           </div>
         </div>
