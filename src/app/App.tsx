@@ -27,7 +27,7 @@ const ProfilePage = lazy(() => import("./pages/admin/ProfilePage").then((m) => (
 function PageLoader() {
   return (
     <div className="min-h-[50vh] grid place-items-center">
-      <div className="size-8 rounded-full border-2 border-[#0F4C81]/20 border-t-[#0F4C81] animate-spin" />
+      <div className="size-8 rounded-full border-2 border-[#1C3A54]/20 border-t-[#1C3A54] animate-spin" />
     </div>
   );
 }

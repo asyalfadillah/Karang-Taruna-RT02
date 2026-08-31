@@ -43,7 +43,7 @@ export function PhotosPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl text-[#0F4C81]" style={{ fontWeight: 700 }}>Kelola Foto</h1>
+        <h1 className="text-2xl text-[#1C3A54]" style={{ fontWeight: 700 }}>Kelola Foto</h1>
         <p className="text-muted-foreground text-sm">Unggah dan kelola foto di dalam album.</p>
       </div>
 
@@ -56,7 +56,7 @@ export function PhotosPage() {
         </select>
         <div className="relative flex-1 min-w-[200px] max-w-sm">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
-          <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Cari foto / tag..." className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-white border border-black/5 outline-none focus:border-[#0F4C81]" />
+          <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Cari foto / tag..." className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-white border border-black/5 outline-none focus:border-[#1C3A54]" />
         </div>
       </div>
 
@@ -66,9 +66,9 @@ export function PhotosPage() {
         onDragLeave={() => setDrag(false)}
         onDrop={(e) => { e.preventDefault(); setDrag(false); handleFiles(e.dataTransfer.files); }}
         onClick={() => fileRef.current?.click()}
-        className={`cursor-pointer rounded-2xl border-2 border-dashed p-10 text-center transition ${drag ? "border-[#D32F2F] bg-red-50" : "border-[#0F4C81]/30 bg-white hover:bg-[#F5F7FA]"}`}
+        className={`cursor-pointer rounded-2xl border-2 border-dashed p-10 text-center transition ${drag ? "border-[#9C2B2F] bg-red-50" : "border-[#1C3A54]/30 bg-white hover:bg-[#F6F2EA]"}`}
       >
-        <span className="grid place-items-center size-14 rounded-full bg-[#0F4C81]/10 text-[#0F4C81] mx-auto mb-3"><Upload className="size-7" /></span>
+        <span className="grid place-items-center size-14 rounded-full bg-[#1C3A54]/10 text-[#1C3A54] mx-auto mb-3"><Upload className="size-7" /></span>
         <p style={{ fontWeight: 600 }}>Tarik & lepas foto di sini, atau klik untuk memilih</p>
         <p className="text-sm text-muted-foreground mt-1">Mendukung JPG, PNG, WEBP · Multiple Upload</p>
         <input ref={fileRef} type="file" accept="image/jpeg,image/png,image/webp" multiple hidden onChange={(e) => handleFiles(e.target.files)} />
@@ -81,12 +81,12 @@ export function PhotosPage() {
             <div className="p-3">
               <p className="text-sm truncate" style={{ fontWeight: 500 }}>{p.title}</p>
               <p className="text-xs text-muted-foreground">{formatDate(p.date)}</p>
-              {p.tags.length > 0 && <p className="text-xs text-[#0F4C81] truncate mt-1">#{p.tags.join(" #")}</p>}
+              {p.tags.length > 0 && <p className="text-xs text-[#1C3A54] truncate mt-1">#{p.tags.join(" #")}</p>}
             </div>
             <div className="absolute top-2 right-2 flex gap-1.5 opacity-0 group-hover:opacity-100 transition">
-              <button title="Jadikan cover album" onClick={() => { updateAlbum(p.albumId, { cover: p.url }); toast.success("Foto dijadikan cover album."); }} className="grid place-items-center size-8 rounded-lg bg-white/90 text-[#D4AF37] hover:bg-[#D4AF37] hover:text-white transition"><Star className="size-4" /></button>
-              <button onClick={() => setEditing(p)} className="grid place-items-center size-8 rounded-lg bg-white/90 text-[#0F4C81] hover:bg-[#0F4C81] hover:text-white transition"><Pencil className="size-4" /></button>
-              <button onClick={() => setDel(p)} className="grid place-items-center size-8 rounded-lg bg-white/90 text-[#D32F2F] hover:bg-[#D32F2F] hover:text-white transition"><Trash2 className="size-4" /></button>
+              <button title="Jadikan cover album" onClick={() => { updateAlbum(p.albumId, { cover: p.url }); toast.success("Foto dijadikan cover album."); }} className="grid place-items-center size-8 rounded-lg bg-white/90 text-[#A8802F] hover:bg-[#A8802F] hover:text-white transition"><Star className="size-4" /></button>
+              <button onClick={() => setEditing(p)} className="grid place-items-center size-8 rounded-lg bg-white/90 text-[#1C3A54] hover:bg-[#1C3A54] hover:text-white transition"><Pencil className="size-4" /></button>
+              <button onClick={() => setDel(p)} className="grid place-items-center size-8 rounded-lg bg-white/90 text-[#9C2B2F] hover:bg-[#9C2B2F] hover:text-white transition"><Trash2 className="size-4" /></button>
             </div>
           </div>
         ))}
@@ -108,8 +108,8 @@ export function PhotosPage() {
               </select>
             </Field>
             <div className="flex gap-3 pt-2">
-              <button type="button" onClick={() => setEditing(null)} className="flex-1 py-2.5 rounded-xl bg-[#F5F7FA] hover:bg-black/5 transition" style={{ fontWeight: 600 }}>Batal</button>
-              <button className="flex-1 py-2.5 rounded-xl bg-[#0F4C81] text-white hover:bg-[#D32F2F] transition" style={{ fontWeight: 600 }}>Simpan</button>
+              <button type="button" onClick={() => setEditing(null)} className="flex-1 py-2.5 rounded-xl bg-[#F6F2EA] hover:bg-black/5 transition" style={{ fontWeight: 600 }}>Batal</button>
+              <button className="flex-1 py-2.5 rounded-xl bg-[#1C3A54] text-white hover:bg-[#9C2B2F] transition" style={{ fontWeight: 600 }}>Simpan</button>
             </div>
           </form>
         )}

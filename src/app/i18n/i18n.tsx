@@ -18,7 +18,7 @@ const dict = {
     hero: {
       badge: "Bersama Remaja Karang Taruna 02, Warga 02",
       titlePrefix: "Dokumentasi",
-      titleHighlight: "KEGIATAN HUT RI RT 02",
+      titleHighlight: "Kegiatan HUT RI RT 02",
       desc: "Mengabadikan setiap momen kegiatan HUT RI dan Panggung Kemerdekaan yang diselenggarakan oleh Remaja Karang Taruna RT 02.",
       cta: "Lihat Dokumentasi",
     },
@@ -105,7 +105,7 @@ const dict = {
     hero: {
       badge: "Together with Karang Taruna 02 Youth, RT 02 Residents",
       titlePrefix: "Documentation of",
-      titleHighlight: "RT 02 INDEPENDENCE DAY EVENTS",
+      titleHighlight: "RT 02 Independence Day Events",
       desc: "Preserving every moment of Independence Day celebrations and the Freedom Stage event organized by Karang Taruna RT 02 youth.",
       cta: "View Documentation",
     },

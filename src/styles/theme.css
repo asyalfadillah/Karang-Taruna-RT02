@@ -2,20 +2,20 @@
 
 :root {
   --font-size: 16px;
-  --font-heading: 'Poppins', ui-sans-serif, system-ui, sans-serif;
+  --font-heading: 'Fraunces', Georgia, serif;
   --font-body: 'Inter', ui-sans-serif, system-ui, sans-serif;
 
-  /* Brand palette */
-  --brand-blue: #0F4C81;
-  --brand-red: #D32F2F;
+  /* Brand palette — diperdalam & dihangatkan, terinspirasi warna bendera + lambang Karang Taruna */
+  --brand-blue: #1C3A54;
+  --brand-red: #9C2B2F;
   --brand-white: #FFFFFF;
-  --brand-gold: #D4AF37;
-  --brand-gray: #F5F7FA;
+  --brand-gold: #A8802F;
+  --brand-gray: #F6F2EA;
 
-  --background: #ffffff;
-  --foreground: oklch(0.145 0 0);
-  --card: #ffffff;
-  --card-foreground: oklch(0.145 0 0);
+  --background: #FFFDF9;
+  --foreground: #211C17;
+  --card: #FFFFFF;
+  --card-foreground: #211C17;
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
   --primary: #0F4C81;

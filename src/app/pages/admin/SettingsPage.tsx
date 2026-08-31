@@ -16,7 +16,7 @@ export function SettingsPage() {
   return (
     <div className="space-y-6 max-w-3xl">
       <div>
-        <h1 className="text-2xl text-[#0F4C81]" style={{ fontWeight: 700 }}>Pengaturan</h1>
+        <h1 className="text-2xl text-[#1C3A54]" style={{ fontWeight: 700 }}>Pengaturan</h1>
         <p className="text-muted-foreground text-sm">Kelola informasi umum website dan preferensi.</p>
       </div>
 
@@ -24,7 +24,7 @@ export function SettingsPage() {
         onSubmit={(e) => { e.preventDefault(); toast.success("Pengaturan berhasil disimpan."); }}
         className="bg-white rounded-2xl border border-black/5 p-6 space-y-4"
       >
-        <h3 className="text-[#0F4C81]" style={{ fontWeight: 600 }}>Informasi Umum</h3>
+        <h3 className="text-[#1C3A54]" style={{ fontWeight: 600 }}>Informasi Umum</h3>
         <div className="grid sm:grid-cols-2 gap-4">
           <Field label="Nama Organisasi"><input value={site.name} onChange={(e) => setSite({ ...site, name: e.target.value })} className={inputClass} /></Field>
           <Field label="Tagline"><input value={site.tagline} onChange={(e) => setSite({ ...site, tagline: e.target.value })} className={inputClass} /></Field>
@@ -34,21 +34,21 @@ export function SettingsPage() {
         </div>
         <Field label="Alamat"><textarea value={site.address} onChange={(e) => setSite({ ...site, address: e.target.value })} rows={2} className={inputClass} /></Field>
 
-        <h3 className="text-[#0F4C81] pt-2" style={{ fontWeight: 600 }}>Preferensi</h3>
+        <h3 className="text-[#1C3A54] pt-2" style={{ fontWeight: 600 }}>Preferensi</h3>
         <div className="space-y-3">
           {([
             ["autoIndex", "Indeks otomatis media ke mesin pencari"],
             ["lazyLoad", "Aktifkan lazy loading gambar"],
             ["publicDownload", "Izinkan pengunjung mengunduh foto"],
           ] as const).map(([key, label]) => (
-            <label key={key} className="flex items-center justify-between p-3 rounded-xl bg-[#F5F7FA]">
+            <label key={key} className="flex items-center justify-between p-3 rounded-xl bg-[#F6F2EA]">
               <span className="text-sm">{label}</span>
-              <input type="checkbox" checked={prefs[key]} onChange={(e) => setPrefs({ ...prefs, [key]: e.target.checked })} className="accent-[#0F4C81] size-5" />
+              <input type="checkbox" checked={prefs[key]} onChange={(e) => setPrefs({ ...prefs, [key]: e.target.checked })} className="accent-[#1C3A54] size-5" />
             </label>
           ))}
         </div>
 
-        <button className="px-6 py-2.5 rounded-xl bg-[#0F4C81] text-white hover:bg-[#D32F2F] transition" style={{ fontWeight: 600 }}>Simpan Pengaturan</button>
+        <button className="px-6 py-2.5 rounded-xl bg-[#1C3A54] text-white hover:bg-[#9C2B2F] transition" style={{ fontWeight: 600 }}>Simpan Pengaturan</button>
       </form>
     </div>
   );

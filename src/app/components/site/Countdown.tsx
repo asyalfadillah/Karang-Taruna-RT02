@@ -22,7 +22,7 @@ export function Countdown({ date, compact }: { date: string; compact?: boolean }
   }, [date]);
 
   if (t.done) {
-    return <span className="text-sm text-[#D4AF37]" style={{ fontWeight: 600 }}>🎉 Hari ini!</span>;
+    return <span className="text-sm text-[#A8802F]" style={{ fontWeight: 600 }}>🎉 Hari ini!</span>;
   }
 
   const items = [
@@ -34,7 +34,7 @@ export function Countdown({ date, compact }: { date: string; compact?: boolean }
 
   if (compact) {
     return (
-      <span className="text-sm text-[#0F4C81]" style={{ fontWeight: 600 }}>
+      <span className="text-sm text-[#1C3A54]" style={{ fontWeight: 600 }}>
         {t.days}h : {String(t.hours).padStart(2, "0")}j : {String(t.minutes).padStart(2, "0")}m : {String(t.seconds).padStart(2, "0")}d
       </span>
     );

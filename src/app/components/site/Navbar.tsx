@@ -50,7 +50,7 @@ export function Navbar({ onSearch }: { onSearch: () => void }) {
             <img src="/logo.png" alt="Logo Karang Taruna RT 02" className="size-full object-contain p-0.5" />
           </span>
           <span className="leading-tight">
-            <span className={`block text-sm ${scrolled ? "text-[#0F4C81]" : "text-white"}`} style={{ fontWeight: 700, fontFamily: "var(--font-heading)" }}>
+            <span className={`block text-sm ${scrolled ? "text-[#1C3A54]" : "text-white"}`} style={{ fontWeight: 700, fontFamily: "var(--font-heading)" }}>
               Karang Taruna RT 02
             </span>
             <span className={`block text-xs ${scrolled ? "text-muted-foreground" : "text-white/70"}`}>Dokumentasi HUT RI</span>
@@ -63,7 +63,7 @@ export function Navbar({ onSearch }: { onSearch: () => void }) {
             <button
               key={l.to}
               onClick={() => goHash(l.to)}
-              className={`px-3 py-2 rounded-lg text-sm transition hover:text-[#D32F2F] ${
+              className={`px-3 py-2 rounded-lg text-sm transition hover:text-[#9C2B2F] ${
                 scrolled ? "text-foreground" : "text-white"
               }`}
             >
@@ -78,7 +78,7 @@ export function Navbar({ onSearch }: { onSearch: () => void }) {
             <button
               onClick={() => setLangOpen((v) => !v)}
               className={`flex items-center gap-1.5 px-2.5 h-10 rounded-lg text-sm transition ${
-                scrolled ? "hover:bg-[#0F4C81]/10 text-[#0F4C81]" : "hover:bg-white/20 text-white"
+                scrolled ? "hover:bg-[#1C3A54]/10 text-[#1C3A54]" : "hover:bg-white/20 text-white"
               }`}
               aria-label="Ganti bahasa"
             >
@@ -94,7 +94,7 @@ export function Navbar({ onSearch }: { onSearch: () => void }) {
                       setLang(l.code);
                       setLangOpen(false);
                     }}
-                    className={`w-full text-left px-4 py-2.5 text-sm hover:bg-[#F5F7FA] transition ${lang === l.code ? "text-[#D32F2F]" : "text-foreground"}`}
+                    className={`w-full text-left px-4 py-2.5 text-sm hover:bg-[#F6F2EA] transition ${lang === l.code ? "text-[#9C2B2F]" : "text-foreground"}`}
                     style={{ fontWeight: lang === l.code ? 600 : 400 }}
                   >
                     {l.native}
@@ -107,7 +107,7 @@ export function Navbar({ onSearch }: { onSearch: () => void }) {
           <button
             onClick={onSearch}
             className={`grid place-items-center size-10 rounded-lg transition ${
-              scrolled ? "hover:bg-[#0F4C81]/10 text-[#0F4C81]" : "hover:bg-white/20 text-white"
+              scrolled ? "hover:bg-[#1C3A54]/10 text-[#1C3A54]" : "hover:bg-white/20 text-white"
             }`}
             aria-label="Cari"
           >
@@ -115,7 +115,7 @@ export function Navbar({ onSearch }: { onSearch: () => void }) {
           </button>
           <button
             onClick={() => setMobileOpen((v) => !v)}
-            className={`lg:hidden grid place-items-center size-10 rounded-lg ${scrolled ? "text-[#0F4C81]" : "text-white"}`}
+            className={`lg:hidden grid place-items-center size-10 rounded-lg ${scrolled ? "text-[#1C3A54]" : "text-white"}`}
             aria-label="Menu"
           >
             {mobileOpen ? <X className="size-6" /> : <Menu className="size-6" />}
@@ -130,7 +130,7 @@ export function Navbar({ onSearch }: { onSearch: () => void }) {
             <button
               key={l.to}
               onClick={() => goHash(l.to)}
-              className="block w-full text-left px-5 py-3 border-b border-black/5 hover:bg-[#F5F7FA] transition"
+              className="block w-full text-left px-5 py-3 border-b border-black/5 hover:bg-[#F6F2EA] transition"
             >
               {l.label}
             </button>

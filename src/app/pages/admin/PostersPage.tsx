@@ -52,7 +52,7 @@ export function PostersPage() {
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="text-2xl text-[#0F4C81]" style={{ fontWeight: 700 }}>Poster Informasi</h1>
+        <h1 className="text-2xl text-[#1C3A54]" style={{ fontWeight: 700 }}>Poster Informasi</h1>
         <p className="text-muted-foreground text-sm">
           Kelola poster/pengumuman. Satu poster bisa ditandai muncul sebagai <b>popup</b> di beranda (sebelum pengunjung scroll), dan semua poster aktif tampil di section &quot;Poster Informasi&quot;.
         </p>
@@ -65,22 +65,22 @@ export function PostersPage() {
         <Field label="Link tujuan (opsional)">
           <input value={link} onChange={(e) => setLink(e.target.value)} placeholder="https://... (kosongkan kalau tidak ada)" className={inputClass} />
         </Field>
-        <label className="flex flex-col items-center justify-center gap-2 rounded-xl border-2 border-dashed border-[#0F4C81]/30 bg-[#F5F7FA] p-6 cursor-pointer hover:border-[#0F4C81]/60 transition">
-          <Upload className="size-6 text-[#0F4C81]" />
+        <label className="flex flex-col items-center justify-center gap-2 rounded-xl border-2 border-dashed border-[#1C3A54]/30 bg-[#F6F2EA] p-6 cursor-pointer hover:border-[#1C3A54]/60 transition">
+          <Upload className="size-6 text-[#1C3A54]" />
           <span className="text-sm text-muted-foreground">{uploading ? "Mengunggah..." : "Klik untuk pilih gambar poster"}</span>
           <input ref={fileRef} type="file" accept="image/*" className="hidden" onChange={(e) => handleUpload(e.target.files)} disabled={uploading} />
         </label>
       </div>
 
       {posters.length === 0 ? (
-        <div className="rounded-2xl border-2 border-dashed border-[#0F4C81]/20 bg-white p-10 text-center text-muted-foreground">
+        <div className="rounded-2xl border-2 border-dashed border-[#1C3A54]/20 bg-white p-10 text-center text-muted-foreground">
           Belum ada poster yang diunggah.
         </div>
       ) : (
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {posters.map((p) => (
             <div key={p.id} className="rounded-2xl border border-black/5 bg-white overflow-hidden">
-              <div className="aspect-[3/4] bg-[#F5F7FA]">
+              <div className="aspect-[3/4] bg-[#F6F2EA]">
                 <img src={p.imageUrl} alt={p.title} className="w-full h-full object-cover" />
               </div>
               <div className="p-3 space-y-2">
@@ -99,13 +99,13 @@ export function PostersPage() {
                   </button>
                   <button
                     onClick={() => setAsPopup(p.id)}
-                    className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs transition ${p.showAsPopup ? "bg-[#D32F2F] text-white" : "bg-black/5 text-muted-foreground hover:bg-black/10"}`}
+                    className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs transition ${p.showAsPopup ? "bg-[#9C2B2F] text-white" : "bg-black/5 text-muted-foreground hover:bg-black/10"}`}
                   >
                     <Megaphone className="size-3.5" /> {p.showAsPopup ? "Popup Aktif" : "Jadikan Popup"}
                   </button>
                   <button
                     onClick={() => setDel({ id: p.id, title: p.title })}
-                    className="ml-auto grid place-items-center size-8 rounded-lg bg-red-50 text-[#D32F2F] hover:bg-[#D32F2F] hover:text-white transition"
+                    className="ml-auto grid place-items-center size-8 rounded-lg bg-red-50 text-[#9C2B2F] hover:bg-[#9C2B2F] hover:text-white transition"
                   >
                     <Trash2 className="size-4" />
                   </button>

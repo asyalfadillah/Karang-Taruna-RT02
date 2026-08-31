@@ -12,7 +12,7 @@ export const DONORS: { name: string; note?: string }[] = [
 export function Donors() {
   const { t } = useLang();
   return (
-    <section id="donatur" className="py-24 bg-[#F5F7FA]">
+    <section id="donatur" className="py-24 bg-[#F6F2EA]">
       <div className="max-w-5xl mx-auto px-4 md:px-8">
         <Reveal>
           <SectionHeading
@@ -26,11 +26,11 @@ export function Donors() {
           {DONORS.map((d, i) => (
             <Reveal key={d.name} delay={i * 0.05}>
               <div className="h-full flex items-center gap-3 rounded-xl border border-black/5 bg-white p-4 hover:shadow-md transition-all duration-300">
-                <span className="grid place-items-center size-10 shrink-0 rounded-lg bg-gradient-to-br from-[#0F4C81] to-[#D32F2F] text-white">
+                <span className="grid place-items-center size-10 shrink-0 rounded-lg bg-[#9C2B2F] text-white">
                   <HeartHandshake className="size-5" />
                 </span>
                 <div>
-                  <p className="text-sm text-[#0F4C81]" style={{ fontWeight: 600 }}>{d.name}</p>
+                  <p className="text-sm text-[#1C3A54]" style={{ fontWeight: 600 }}>{d.name}</p>
                   {d.note && <p className="text-xs text-muted-foreground">{d.note}</p>}
                 </div>
               </div>

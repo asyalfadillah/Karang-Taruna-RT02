@@ -56,17 +56,17 @@ export function AlbumsPage() {
     <div className="space-y-6">
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl text-[#0F4C81]" style={{ fontWeight: 700 }}>Album Dokumentasi</h1>
+          <h1 className="text-2xl text-[#1C3A54]" style={{ fontWeight: 700 }}>Album Dokumentasi</h1>
           <p className="text-muted-foreground text-sm">Kelola album kegiatan secara manual.</p>
         </div>
-        <button onClick={openNew} className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#D32F2F] text-white hover:bg-[#b71c1c] transition shadow-lg" style={{ fontWeight: 600 }}>
+        <button onClick={openNew} className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#9C2B2F] text-white hover:bg-[#7a1f22] transition shadow-lg" style={{ fontWeight: 600 }}>
           <Plus className="size-5" /> Tambah Album
         </button>
       </div>
 
       <div className="relative max-w-sm">
         <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
-        <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Cari album..." className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-white border border-black/5 outline-none focus:border-[#0F4C81]" />
+        <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Cari album..." className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-white border border-black/5 outline-none focus:border-[#1C3A54]" />
       </div>
 
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -79,16 +79,16 @@ export function AlbumsPage() {
                 <span className={`absolute top-3 left-3 text-xs px-2 py-1 rounded-full ${a.status === "publish" ? "bg-green-100 text-green-700" : "bg-yellow-100 text-yellow-700"}`}>{a.status}</span>
               </div>
               <div className="p-4">
-                <h3 className="text-[#0F4C81] line-clamp-1" style={{ fontWeight: 600 }}>{a.name}</h3>
+                <h3 className="text-[#1C3A54] line-clamp-1" style={{ fontWeight: 600 }}>{a.name}</h3>
                 <p className="text-xs text-muted-foreground mt-1">{formatDate(a.date)}</p>
                 <div className="mt-3 flex items-center gap-4 text-sm text-muted-foreground">
                   <span className="flex items-center gap-1"><ImageIcon className="size-4" /> {c.photos}</span>
                   <span className="flex items-center gap-1"><Film className="size-4" /> {c.videos}</span>
                 </div>
                 <div className="mt-4 flex gap-2">
-                  <Link to={`/album/${a.id}`} className="flex-1 text-center py-2 rounded-lg bg-[#F5F7FA] text-sm hover:bg-black/5 transition">Lihat</Link>
-                  <button onClick={() => openEdit(a)} className="grid place-items-center size-9 rounded-lg bg-[#0F4C81]/10 text-[#0F4C81] hover:bg-[#0F4C81] hover:text-white transition"><Pencil className="size-4" /></button>
-                  <button onClick={() => setDel(a)} className="grid place-items-center size-9 rounded-lg bg-red-50 text-[#D32F2F] hover:bg-[#D32F2F] hover:text-white transition"><Trash2 className="size-4" /></button>
+                  <Link to={`/album/${a.id}`} className="flex-1 text-center py-2 rounded-lg bg-[#F6F2EA] text-sm hover:bg-black/5 transition">Lihat</Link>
+                  <button onClick={() => openEdit(a)} className="grid place-items-center size-9 rounded-lg bg-[#1C3A54]/10 text-[#1C3A54] hover:bg-[#1C3A54] hover:text-white transition"><Pencil className="size-4" /></button>
+                  <button onClick={() => setDel(a)} className="grid place-items-center size-9 rounded-lg bg-red-50 text-[#9C2B2F] hover:bg-[#9C2B2F] hover:text-white transition"><Trash2 className="size-4" /></button>
                 </div>
               </div>
             </div>
@@ -127,8 +127,8 @@ export function AlbumsPage() {
             </div>
           </Field>
           <div className="flex gap-3 pt-2">
-            <button type="button" onClick={() => setModal(false)} className="flex-1 py-2.5 rounded-xl bg-[#F5F7FA] hover:bg-black/5 transition" style={{ fontWeight: 600 }}>Batal</button>
-            <button className="flex-1 py-2.5 rounded-xl bg-[#0F4C81] text-white hover:bg-[#D32F2F] transition" style={{ fontWeight: 600 }}>Simpan</button>
+            <button type="button" onClick={() => setModal(false)} className="flex-1 py-2.5 rounded-xl bg-[#F6F2EA] hover:bg-black/5 transition" style={{ fontWeight: 600 }}>Batal</button>
+            <button className="flex-1 py-2.5 rounded-xl bg-[#1C3A54] text-white hover:bg-[#9C2B2F] transition" style={{ fontWeight: 600 }}>Simpan</button>
           </div>
         </form>
       </Modal>

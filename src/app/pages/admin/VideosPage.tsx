@@ -51,10 +51,10 @@ export function VideosPage() {
     <div className="space-y-6">
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl text-[#0F4C81]" style={{ fontWeight: 700 }}>Kelola Video</h1>
+          <h1 className="text-2xl text-[#1C3A54]" style={{ fontWeight: 700 }}>Kelola Video</h1>
           <p className="text-muted-foreground text-sm">Unggah video MP4 atau sematkan dari YouTube.</p>
         </div>
-        <button onClick={openNew} className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#D32F2F] text-white hover:bg-[#b71c1c] transition shadow-lg" style={{ fontWeight: 600 }}>
+        <button onClick={openNew} className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#9C2B2F] text-white hover:bg-[#7a1f22] transition shadow-lg" style={{ fontWeight: 600 }}>
           <Plus className="size-5" /> Upload Video
         </button>
       </div>
@@ -64,16 +64,16 @@ export function VideosPage() {
           <div key={v.id} className="bg-white rounded-2xl border border-black/5 overflow-hidden hover:shadow-lg transition">
             <div className="relative aspect-video">
               <img src={v.thumbnail} alt={v.title} className="size-full object-cover" />
-              <span className="absolute inset-0 grid place-items-center bg-black/25"><span className="grid place-items-center size-12 rounded-full bg-[#D32F2F] text-white"><Play className="size-5 ml-0.5" fill="currentColor" /></span></span>
+              <span className="absolute inset-0 grid place-items-center bg-black/25"><span className="grid place-items-center size-12 rounded-full bg-[#9C2B2F] text-white"><Play className="size-5 ml-0.5" fill="currentColor" /></span></span>
               <span className="absolute bottom-2 right-2 px-2 py-0.5 rounded bg-black/70 text-white text-xs">{v.duration}</span>
-              <span className="absolute top-2 left-2 px-2 py-0.5 rounded bg-white/90 text-[#0F4C81] text-xs uppercase">{v.source}</span>
+              <span className="absolute top-2 left-2 px-2 py-0.5 rounded bg-white/90 text-[#1C3A54] text-xs uppercase">{v.source}</span>
             </div>
             <div className="p-4">
-              <h3 className="text-[#0F4C81] line-clamp-1" style={{ fontWeight: 600 }}>{v.title}</h3>
+              <h3 className="text-[#1C3A54] line-clamp-1" style={{ fontWeight: 600 }}>{v.title}</h3>
               <p className="text-xs text-muted-foreground mt-0.5">{albumName(v.albumId)} · {formatDate(v.date)}</p>
               <div className="mt-3 flex gap-2">
-                <button onClick={() => openEdit(v)} className="flex-1 flex items-center justify-center gap-1 py-2 rounded-lg bg-[#0F4C81]/10 text-[#0F4C81] text-sm hover:bg-[#0F4C81] hover:text-white transition"><Pencil className="size-4" /> Edit</button>
-                <button onClick={() => setDel(v)} className="grid place-items-center size-9 rounded-lg bg-red-50 text-[#D32F2F] hover:bg-[#D32F2F] hover:text-white transition"><Trash2 className="size-4" /></button>
+                <button onClick={() => openEdit(v)} className="flex-1 flex items-center justify-center gap-1 py-2 rounded-lg bg-[#1C3A54]/10 text-[#1C3A54] text-sm hover:bg-[#1C3A54] hover:text-white transition"><Pencil className="size-4" /> Edit</button>
+                <button onClick={() => setDel(v)} className="grid place-items-center size-9 rounded-lg bg-red-50 text-[#9C2B2F] hover:bg-[#9C2B2F] hover:text-white transition"><Trash2 className="size-4" /></button>
               </div>
             </div>
           </div>
@@ -134,8 +134,8 @@ export function VideosPage() {
             </div>
           </Field>
           <div className="flex gap-3 pt-2">
-            <button type="button" onClick={() => setModal(false)} className="flex-1 py-2.5 rounded-xl bg-[#F5F7FA] hover:bg-black/5 transition" style={{ fontWeight: 600 }}>Batal</button>
-            <button className="flex-1 py-2.5 rounded-xl bg-[#0F4C81] text-white hover:bg-[#D32F2F] transition" style={{ fontWeight: 600 }}>Simpan</button>
+            <button type="button" onClick={() => setModal(false)} className="flex-1 py-2.5 rounded-xl bg-[#F6F2EA] hover:bg-black/5 transition" style={{ fontWeight: 600 }}>Batal</button>
+            <button className="flex-1 py-2.5 rounded-xl bg-[#1C3A54] text-white hover:bg-[#9C2B2F] transition" style={{ fontWeight: 600 }}>Simpan</button>
           </div>
         </form>
       </Modal>

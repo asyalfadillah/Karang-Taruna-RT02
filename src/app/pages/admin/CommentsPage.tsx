@@ -19,12 +19,12 @@ export function CommentsPage() {
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="text-2xl text-[#0F4C81]" style={{ fontWeight: 700 }}>Komentar Warga</h1>
+        <h1 className="text-2xl text-[#1C3A54]" style={{ fontWeight: 700 }}>Komentar Warga</h1>
         <p className="text-muted-foreground text-sm">Kelola komentar yang dikirim warga melalui halaman utama.</p>
       </div>
 
       {comments.length === 0 ? (
-        <div className="rounded-2xl border-2 border-dashed border-[#0F4C81]/20 bg-white p-10 text-center text-muted-foreground flex flex-col items-center gap-2">
+        <div className="rounded-2xl border-2 border-dashed border-[#1C3A54]/20 bg-white p-10 text-center text-muted-foreground flex flex-col items-center gap-2">
           <MessageCircle className="size-8 opacity-40" />
           Belum ada komentar masuk.
         </div>
@@ -32,19 +32,19 @@ export function CommentsPage() {
         <div className="space-y-3">
           {comments.map((c) => (
             <div key={c.id} className="flex items-start gap-3 rounded-2xl bg-white border border-black/5 p-4">
-              <span className="grid place-items-center size-10 shrink-0 rounded-full bg-gradient-to-br from-[#0F4C81] to-[#D32F2F] text-white">
+              <span className="grid place-items-center size-10 shrink-0 rounded-full bg-[#1C3A54] text-white">
                 <User className="size-5" />
               </span>
               <div className="min-w-0 flex-1">
                 <div className="flex items-center gap-2 flex-wrap">
-                  <p className="text-[#0F4C81]" style={{ fontWeight: 600 }}>{c.name}</p>
+                  <p className="text-[#1C3A54]" style={{ fontWeight: 600 }}>{c.name}</p>
                   <span className="text-xs text-muted-foreground">{formatDateTime(c.createdAt)}</span>
                 </div>
                 <p className="mt-1 text-sm text-foreground/80 break-words">{c.message}</p>
               </div>
               <button
                 onClick={() => setDel(c)}
-                className="grid place-items-center size-9 shrink-0 rounded-lg bg-red-50 text-[#D32F2F] hover:bg-[#D32F2F] hover:text-white transition"
+                className="grid place-items-center size-9 shrink-0 rounded-lg bg-red-50 text-[#9C2B2F] hover:bg-[#9C2B2F] hover:text-white transition"
                 title="Hapus komentar"
               >
                 <Trash2 className="size-4" />

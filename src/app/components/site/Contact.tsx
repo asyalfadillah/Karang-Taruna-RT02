@@ -5,7 +5,7 @@ import { useLang } from "../../i18n/i18n";
 const CONTACTS = [
   { icon: Phone, label: "WhatsApp", value: "+62 811-1111-1111", href: "https://wa.me/62811111111", color: "#25D366" },
   { icon: Instagram, label: "Instagram", value: "@karangtaruna.rt02", href: "https://instagram.com", color: "#E1306C" },
-  { icon: Mail, label: "Email", value: "karangtarunakalibata02@gmail.com", href: "mailto:karangtarunakalibata02@gmail.com", color: "#0F4C81" },
+  { icon: Mail, label: "Email", value: "karangtarunakalibata02@gmail.com", href: "mailto:karangtarunakalibata02@gmail.com", color: "#1C3A54" },
 ];
 
 export function Contact() {
@@ -20,11 +20,11 @@ export function Contact() {
         <div className="grid lg:grid-cols-2 gap-8">
           <Reveal>
             <div className="space-y-5">
-              <div className="rounded-2xl border border-black/5 bg-[#F5F7FA] p-6">
+              <div className="rounded-2xl border border-black/5 bg-[#F6F2EA] p-6">
                 <div className="flex gap-4">
-                  <span className="grid place-items-center size-12 rounded-xl bg-[#0F4C81] text-white shrink-0"><MapPin className="size-6" /></span>
+                  <span className="grid place-items-center size-12 rounded-xl bg-[#1C3A54] text-white shrink-0"><MapPin className="size-6" /></span>
                   <div>
-                    <h3 className="text-[#0F4C81]" style={{ fontWeight: 600 }}>{t("contact.orgName")}</h3>
+                    <h3 className="text-[#1C3A54]" style={{ fontWeight: 600 }}>{t("contact.orgName")}</h3>
                     <p className="mt-1 text-sm text-muted-foreground leading-relaxed">
                       Jl. Kalibata Tengah XVI, RT.02/RW.003,<br />
                       Kelurahan Kalibata, Kecamatan Pancoran,<br />

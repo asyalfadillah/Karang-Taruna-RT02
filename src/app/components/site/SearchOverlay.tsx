@@ -120,7 +120,7 @@ export function SearchOverlay({ open, onClose }: { open: boolean; onClose: () =>
           >
             {/* input */}
             <div className="flex items-center gap-3 px-5 py-4 border-b border-black/5">
-              <Search className="size-5 text-[#0F4C81]" />
+              <Search className="size-5 text-[#1C3A54]" />
               <input
                 autoFocus
                 value={query}
@@ -128,7 +128,7 @@ export function SearchOverlay({ open, onClose }: { open: boolean; onClose: () =>
                 placeholder={t("search.placeholder")}
                 className="flex-1 bg-transparent outline-none text-base"
               />
-              <button className="text-muted-foreground hover:text-[#D32F2F] transition" aria-label="Pencarian suara">
+              <button className="text-muted-foreground hover:text-[#9C2B2F] transition" aria-label="Pencarian suara">
                 <Mic className="size-5" />
               </button>
               <button onClick={onClose} className="text-muted-foreground hover:text-foreground transition" aria-label="Tutup">
@@ -137,14 +137,14 @@ export function SearchOverlay({ open, onClose }: { open: boolean; onClose: () =>
             </div>
 
             {/* filters + sort */}
-            <div className="flex flex-wrap items-center justify-between gap-3 px-5 py-3 border-b border-black/5 bg-[#F5F7FA]">
+            <div className="flex flex-wrap items-center justify-between gap-3 px-5 py-3 border-b border-black/5 bg-[#F6F2EA]">
               <div className="flex flex-wrap gap-2">
                 {(["semua", "album", "foto", "video"] as Filter[]).map((f) => (
                   <button
                     key={f}
                     onClick={() => setFilter(f)}
                     className={`px-3 py-1 rounded-full text-sm capitalize transition ${
-                      filter === f ? "bg-[#0F4C81] text-white" : "bg-white text-muted-foreground hover:bg-[#0F4C81]/10"
+                      filter === f ? "bg-[#1C3A54] text-white" : "bg-white text-muted-foreground hover:bg-[#1C3A54]/10"
                     }`}
                   >
                     {t(`search.filters.${f}`)}
@@ -171,7 +171,7 @@ export function SearchOverlay({ open, onClose }: { open: boolean; onClose: () =>
                     <button
                       key={s}
                       onClick={() => runSearch(s)}
-                      className="text-sm px-3 py-1 rounded-full bg-[#D4AF37]/15 text-[#8a6d13] hover:bg-[#D4AF37]/30 transition"
+                      className="text-sm px-3 py-1 rounded-full bg-[#A8802F]/15 text-[#8a6d13] hover:bg-[#A8802F]/30 transition"
                     >
                       {s}
                     </button>
@@ -191,7 +191,7 @@ export function SearchOverlay({ open, onClose }: { open: boolean; onClose: () =>
                     ) : (
                       <div className="flex flex-wrap gap-2">
                         {recent.map((r) => (
-                          <button key={r} onClick={() => setQuery(r)} className="text-sm px-3 py-1 rounded-full bg-[#F5F7FA] hover:bg-[#0F4C81]/10 transition">
+                          <button key={r} onClick={() => setQuery(r)} className="text-sm px-3 py-1 rounded-full bg-[#F6F2EA] hover:bg-[#1C3A54]/10 transition">
                             {r}
                           </button>
                         ))}
@@ -204,7 +204,7 @@ export function SearchOverlay({ open, onClose }: { open: boolean; onClose: () =>
                     </p>
                     <div className="flex flex-wrap gap-2">
                       {POPULAR.map((r) => (
-                        <button key={r} onClick={() => runSearch(r)} className="text-sm px-3 py-1 rounded-full bg-[#F5F7FA] hover:bg-[#0F4C81]/10 transition">
+                        <button key={r} onClick={() => runSearch(r)} className="text-sm px-3 py-1 rounded-full bg-[#F6F2EA] hover:bg-[#1C3A54]/10 transition">
                           {r}
                         </button>
                       ))}
@@ -223,14 +223,14 @@ export function SearchOverlay({ open, onClose }: { open: boolean; onClose: () =>
                   <button
                     key={r.type + r.id}
                     onClick={() => go(r)}
-                    className="w-full flex items-center gap-4 px-5 py-3 hover:bg-[#F5F7FA] transition text-left"
+                    className="w-full flex items-center gap-4 px-5 py-3 hover:bg-[#F6F2EA] transition text-left"
                   >
                     <img src={r.thumb} alt={r.title} loading="lazy" className="size-14 rounded-lg object-cover shrink-0" />
                     <div className="flex-1 min-w-0">
                       <p className="truncate" style={{ fontWeight: 500 }}>{r.title}</p>
                       <p className="text-sm text-muted-foreground truncate">{r.albumName}</p>
                     </div>
-                    <span className="flex items-center gap-1 text-xs px-2 py-1 rounded-full bg-[#0F4C81]/10 text-[#0F4C81] capitalize">
+                    <span className="flex items-center gap-1 text-xs px-2 py-1 rounded-full bg-[#1C3A54]/10 text-[#1C3A54] capitalize">
                       {typeIcon(r.type)} {r.type}
                     </span>
                     <span className="text-xs text-muted-foreground hidden sm:block">{formatDate(r.date)}</span>

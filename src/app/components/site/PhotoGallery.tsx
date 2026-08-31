@@ -22,8 +22,8 @@ export function PhotoGallery() {
         </Reveal>
 
         {photos.length === 0 && (
-          <div className="text-center py-16 rounded-2xl border-2 border-dashed border-[#0F4C81]/20 bg-[#F5F7FA]">
-            <p className="text-lg text-[#0F4C81]" style={{ fontWeight: 600 }}>{t("gallery.empty")}</p>
+          <div className="text-center py-16 rounded-2xl border-2 border-dashed border-[#1C3A54]/20 bg-[#F6F2EA]">
+            <p className="text-lg text-[#1C3A54]" style={{ fontWeight: 600 }}>{t("gallery.empty")}</p>
             <p className="text-muted-foreground mt-1">{t("gallery.emptySub")}</p>
           </div>
         )}
@@ -39,8 +39,8 @@ export function PhotoGallery() {
                     <p className="text-white/70 text-xs line-clamp-1">{p.caption}</p>
                   </div>
                   <div className="absolute top-3 right-3 flex gap-2 opacity-0 group-hover:opacity-100 transition">
-                    <span className="grid place-items-center size-9 rounded-full bg-white/90 text-[#0F4C81]"><ZoomIn className="size-4" /></span>
-                    <a href={p.url} download target="_blank" rel="noreferrer" onClick={(e) => e.stopPropagation()} className="grid place-items-center size-9 rounded-full bg-white/90 text-[#0F4C81] hover:bg-[#D4AF37] hover:text-white transition">
+                    <span className="grid place-items-center size-9 rounded-full bg-white/90 text-[#1C3A54]"><ZoomIn className="size-4" /></span>
+                    <a href={p.url} download target="_blank" rel="noreferrer" onClick={(e) => e.stopPropagation()} className="grid place-items-center size-9 rounded-full bg-white/90 text-[#1C3A54] hover:bg-[#A8802F] hover:text-white transition">
                       <Download className="size-4" />
                     </a>
                   </div>
@@ -54,7 +54,7 @@ export function PhotoGallery() {
           <div className="text-center mt-10">
             <button
               onClick={() => setVisible((v) => v + 8)}
-              className="px-8 py-3 rounded-xl bg-[#0F4C81] text-white hover:bg-[#D32F2F] transition shadow-lg"
+              className="px-8 py-3 rounded-xl bg-[#1C3A54] text-white hover:bg-[#9C2B2F] transition shadow-lg"
               style={{ fontWeight: 600 }}
             >
               {t("gallery.loadMore")}

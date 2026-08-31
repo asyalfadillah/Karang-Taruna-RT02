@@ -14,12 +14,12 @@ export function GalleryPage() {
     <div className="space-y-6">
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl text-[#0F4C81]" style={{ fontWeight: 700 }}>Galeri Media</h1>
+          <h1 className="text-2xl text-[#1C3A54]" style={{ fontWeight: 700 }}>Galeri Media</h1>
           <p className="text-muted-foreground text-sm">Seluruh foto dari semua album ({photos.length} foto).</p>
         </div>
         <div className="flex items-center gap-1 bg-white rounded-lg p-1 border border-black/5">
-          <button onClick={() => setView("grid")} className={`p-2 rounded-md transition ${view === "grid" ? "bg-[#0F4C81] text-white" : "text-muted-foreground"}`}><LayoutGrid className="size-4" /></button>
-          <button onClick={() => setView("list")} className={`p-2 rounded-md transition ${view === "list" ? "bg-[#0F4C81] text-white" : "text-muted-foreground"}`}><List className="size-4" /></button>
+          <button onClick={() => setView("grid")} className={`p-2 rounded-md transition ${view === "grid" ? "bg-[#1C3A54] text-white" : "text-muted-foreground"}`}><LayoutGrid className="size-4" /></button>
+          <button onClick={() => setView("list")} className={`p-2 rounded-md transition ${view === "list" ? "bg-[#1C3A54] text-white" : "text-muted-foreground"}`}><List className="size-4" /></button>
         </div>
       </div>
 
@@ -31,20 +31,20 @@ export function GalleryPage() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition flex flex-col justify-end p-2">
                 <p className="text-white text-xs truncate">{p.title}</p>
               </div>
-              <button onClick={() => setDel(p)} className="absolute top-2 right-2 grid place-items-center size-8 rounded-lg bg-white/90 text-[#D32F2F] opacity-0 group-hover:opacity-100 hover:bg-[#D32F2F] hover:text-white transition"><Trash2 className="size-4" /></button>
+              <button onClick={() => setDel(p)} className="absolute top-2 right-2 grid place-items-center size-8 rounded-lg bg-white/90 text-[#9C2B2F] opacity-0 group-hover:opacity-100 hover:bg-[#9C2B2F] hover:text-white transition"><Trash2 className="size-4" /></button>
             </div>
           ))}
         </div>
       ) : (
         <div className="bg-white rounded-2xl border border-black/5 overflow-hidden divide-y divide-black/5">
           {photos.map((p) => (
-            <div key={p.id} className="flex items-center gap-4 p-3 hover:bg-[#F5F7FA] transition">
+            <div key={p.id} className="flex items-center gap-4 p-3 hover:bg-[#F6F2EA] transition">
               <img src={p.url} alt={p.title} loading="lazy" className="size-14 rounded-lg object-cover" />
               <div className="flex-1 min-w-0">
                 <p className="truncate" style={{ fontWeight: 500 }}>{p.title}</p>
                 <p className="text-sm text-muted-foreground">{albumName(p.albumId)} · {formatDate(p.date)}</p>
               </div>
-              <button onClick={() => setDel(p)} className="grid place-items-center size-9 rounded-lg bg-red-50 text-[#D32F2F] hover:bg-[#D32F2F] hover:text-white transition"><Trash2 className="size-4" /></button>
+              <button onClick={() => setDel(p)} className="grid place-items-center size-9 rounded-lg bg-red-50 text-[#9C2B2F] hover:bg-[#9C2B2F] hover:text-white transition"><Trash2 className="size-4" /></button>
             </div>
           ))}
         </div>

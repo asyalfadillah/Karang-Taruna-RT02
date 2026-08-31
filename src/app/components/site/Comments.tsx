@@ -53,13 +53,13 @@ export function Comments() {
         </Reveal>
 
         <Reveal delay={0.1}>
-          <form onSubmit={submit} className="rounded-2xl border border-black/5 bg-[#F5F7FA] p-5 space-y-3">
+          <form onSubmit={submit} className="rounded-2xl border border-black/5 bg-[#F6F2EA] p-5 space-y-3">
             <input
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder={t("comments.namePlaceholder")}
               maxLength={60}
-              className="w-full rounded-xl border border-black/10 bg-white px-4 py-2.5 outline-none focus:border-[#0F4C81]"
+              className="w-full rounded-xl border border-black/10 bg-white px-4 py-2.5 outline-none focus:border-[#1C3A54]"
             />
             <textarea
               value={message}
@@ -67,12 +67,12 @@ export function Comments() {
               placeholder={t("comments.msgPlaceholder")}
               maxLength={500}
               rows={3}
-              className="w-full rounded-xl border border-black/10 bg-white px-4 py-2.5 outline-none focus:border-[#0F4C81] resize-none"
+              className="w-full rounded-xl border border-black/10 bg-white px-4 py-2.5 outline-none focus:border-[#1C3A54] resize-none"
             />
             <button
               type="submit"
               disabled={sending}
-              className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#0F4C81] text-white hover:bg-[#0b3660] transition disabled:opacity-50"
+              className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#1C3A54] text-white hover:bg-[#122A3D] transition disabled:opacity-50"
               style={{ fontWeight: 600 }}
             >
               <Send className="size-4" /> {sending ? t("comments.sending") : t("comments.send")}
@@ -90,12 +90,12 @@ export function Comments() {
             comments.map((c, i) => (
               <Reveal key={c.id} delay={Math.min(i * 0.05, 0.3)}>
                 <div className="flex gap-3 rounded-xl border border-black/5 bg-white p-4">
-                  <span className="grid place-items-center size-9 shrink-0 rounded-full bg-gradient-to-br from-[#0F4C81] to-[#D32F2F] text-white">
+                  <span className="grid place-items-center size-9 shrink-0 rounded-full bg-[#1C3A54] text-white">
                     <User className="size-4" />
                   </span>
                   <div className="min-w-0">
                     <div className="flex items-center gap-2 flex-wrap">
-                      <p className="text-sm text-[#0F4C81]" style={{ fontWeight: 600 }}>{c.name}</p>
+                      <p className="text-sm text-[#1C3A54]" style={{ fontWeight: 600 }}>{c.name}</p>
                       <span className="text-xs text-muted-foreground">{timeAgo(c.createdAt)}</span>
                     </div>
                     <p className="mt-1 text-sm text-foreground/80 break-words">{c.message}</p>

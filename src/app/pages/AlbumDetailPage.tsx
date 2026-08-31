@@ -25,7 +25,7 @@ export function AlbumDetailPage() {
       <div className="min-h-screen grid place-items-center pt-20">
         <div className="text-center">
           <p className="text-muted-foreground">{t("album.notFound")}</p>
-          <Link to="/" className="mt-4 inline-block text-[#0F4C81] hover:underline">← {t("album.backHome")}</Link>
+          <Link to="/" className="mt-4 inline-block text-[#1C3A54] hover:underline">← {t("album.backHome")}</Link>
         </div>
       </div>
     );
@@ -36,7 +36,7 @@ export function AlbumDetailPage() {
       {/* header */}
       <div className="relative h-72 md:h-96 overflow-hidden">
         <img src={album.cover} alt={album.name} className="size-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0b3660] via-[#0F4C81]/60 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#122A3D] via-[#1C3A54]/60 to-transparent" />
         <div className="absolute inset-0 flex items-end">
           <div className="max-w-7xl mx-auto px-4 md:px-8 pb-8 w-full text-white">
             <Link to="/#dokumentasi" className="inline-flex items-center gap-2 text-white/80 hover:text-white mb-4 text-sm">
@@ -60,7 +60,7 @@ export function AlbumDetailPage() {
             href={album.driveLink}
             target="_blank"
             rel="noreferrer"
-            className="mt-5 inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#D4AF37] text-white hover:bg-[#b8942c] transition shadow-lg"
+            className="mt-5 inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#A8802F] text-white hover:bg-[#b8942c] transition shadow-lg"
             style={{ fontWeight: 600 }}
           >
             <FolderOpen className="size-5" /> {t("album.viewAllDocs")} <ExternalLink className="size-4" />
@@ -74,7 +74,7 @@ export function AlbumDetailPage() {
               key={tabKey}
               onClick={() => setTab(tabKey)}
               className={`px-5 py-3 capitalize transition border-b-2 -mb-px ${
-                tab === tabKey ? "border-[#D32F2F] text-[#D32F2F]" : "border-transparent text-muted-foreground hover:text-foreground"
+                tab === tabKey ? "border-[#9C2B2F] text-[#9C2B2F]" : "border-transparent text-muted-foreground hover:text-foreground"
               }`}
               style={{ fontWeight: 600 }}
             >
@@ -97,8 +97,8 @@ export function AlbumDetailPage() {
                         <p className="text-white text-sm" style={{ fontWeight: 600 }}>{p.title}</p>
                       </div>
                       <div className="absolute top-3 right-3 flex gap-2 opacity-0 group-hover:opacity-100 transition">
-                        <span className="grid place-items-center size-9 rounded-full bg-white/90 text-[#0F4C81]"><ZoomIn className="size-4" /></span>
-                        <a href={p.url} download target="_blank" rel="noreferrer" onClick={(e) => e.stopPropagation()} className="grid place-items-center size-9 rounded-full bg-white/90 text-[#0F4C81] hover:bg-[#D4AF37] hover:text-white transition"><Download className="size-4" /></a>
+                        <span className="grid place-items-center size-9 rounded-full bg-white/90 text-[#1C3A54]"><ZoomIn className="size-4" /></span>
+                        <a href={p.url} download target="_blank" rel="noreferrer" onClick={(e) => e.stopPropagation()} className="grid place-items-center size-9 rounded-full bg-white/90 text-[#1C3A54] hover:bg-[#A8802F] hover:text-white transition"><Download className="size-4" /></a>
                       </div>
                     </div>
                   ))}
@@ -108,7 +108,7 @@ export function AlbumDetailPage() {
                 <div className="text-center mt-8">
                   <button
                     onClick={() => setVisiblePhotos((v) => v + 3)}
-                    className="px-8 py-3 rounded-xl bg-[#0F4C81] text-white hover:bg-[#D32F2F] transition shadow-lg"
+                    className="px-8 py-3 rounded-xl bg-[#1C3A54] text-white hover:bg-[#9C2B2F] transition shadow-lg"
                     style={{ fontWeight: 600 }}
                   >
                     {t("album.loadMore")} ({albumPhotos.length - visiblePhotos} {t("album.more")})
@@ -128,13 +128,13 @@ export function AlbumDetailPage() {
                   <button onClick={() => (isEmbeddable(v) ? setActiveVideo(v) : window.open(v.url, "_blank", "noopener"))} className="relative block w-full aspect-video overflow-hidden">
                     <img src={v.thumbnail} alt={v.title} loading="lazy" className="size-full object-cover group-hover:scale-110 transition-transform duration-700" />
                     <span className="absolute inset-0 bg-black/30 grid place-items-center">
-                      <span className="grid place-items-center size-14 rounded-full bg-[#D32F2F] text-white group-hover:scale-110 transition"><Play className="size-6 ml-1" fill="currentColor" /></span>
+                      <span className="grid place-items-center size-14 rounded-full bg-[#9C2B2F] text-white group-hover:scale-110 transition"><Play className="size-6 ml-1" fill="currentColor" /></span>
                     </span>
-                    <span className="absolute top-2 left-2 px-2 py-0.5 rounded bg-white/90 text-[#0F4C81] text-xs">{VIDEO_SOURCE_LABEL[v.source]}</span>
+                    <span className="absolute top-2 left-2 px-2 py-0.5 rounded bg-white/90 text-[#1C3A54] text-xs">{VIDEO_SOURCE_LABEL[v.source]}</span>
                     <span className="absolute bottom-2 right-2 px-2 py-1 rounded bg-black/70 text-white text-xs">{v.duration}</span>
                   </button>
                   <div className="p-4">
-                    <h3 className="line-clamp-1 text-[#0F4C81]" style={{ fontWeight: 600 }}>{v.title}</h3>
+                    <h3 className="line-clamp-1 text-[#1C3A54]" style={{ fontWeight: 600 }}>{v.title}</h3>
                     <p className="mt-1 text-sm text-muted-foreground line-clamp-2">{v.description}</p>
                   </div>
                 </div>

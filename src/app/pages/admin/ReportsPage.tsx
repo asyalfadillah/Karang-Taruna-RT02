@@ -6,9 +6,9 @@ import { Field, inputClass, ConfirmDialog } from "./ui";
 
 const FILE_META: Record<ReportFileType, { label: string; icon: typeof FileText; color: string }> = {
   xlsx: { label: "Excel", icon: FileSpreadsheet, color: "#1D6F42" },
-  pdf: { label: "PDF", icon: FileText, color: "#D32F2F" },
+  pdf: { label: "PDF", icon: FileText, color: "#9C2B2F" },
   docx: { label: "Word", icon: FileText, color: "#2B579A" },
-  other: { label: "File", icon: FileIcon, color: "#0F4C81" },
+  other: { label: "File", icon: FileIcon, color: "#1C3A54" },
 };
 
 const MAX_SIZE = 8 * 1024 * 1024; // 8MB — biar aman disimpan di database
@@ -67,7 +67,7 @@ export function ReportsPage() {
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="text-2xl text-[#0F4C81]" style={{ fontWeight: 700 }}>Laporan Keuangan</h1>
+        <h1 className="text-2xl text-[#1C3A54]" style={{ fontWeight: 700 }}>Laporan Keuangan</h1>
         <p className="text-muted-foreground text-sm">Unggah laporan keuangan (Excel, PDF, Word) yang akan tampil di halaman utama, dikelompokkan per tahun.</p>
       </div>
 
@@ -80,21 +80,21 @@ export function ReportsPage() {
             <input type="number" value={year} onChange={(e) => setYear(Number(e.target.value))} className={inputClass} />
           </Field>
         </div>
-        <label className="flex flex-col items-center justify-center gap-2 rounded-xl border-2 border-dashed border-[#0F4C81]/30 bg-[#F5F7FA] p-6 cursor-pointer hover:border-[#0F4C81]/60 transition">
-          <Upload className="size-6 text-[#0F4C81]" />
+        <label className="flex flex-col items-center justify-center gap-2 rounded-xl border-2 border-dashed border-[#1C3A54]/30 bg-[#F6F2EA] p-6 cursor-pointer hover:border-[#1C3A54]/60 transition">
+          <Upload className="size-6 text-[#1C3A54]" />
           <span className="text-sm text-muted-foreground">{uploading ? "Mengunggah..." : "Klik untuk pilih file (PDF, Excel, Word) — maks 8MB"}</span>
           <input ref={fileRef} type="file" accept=".pdf,.xlsx,.xls,.csv,.doc,.docx" className="hidden" onChange={(e) => handleUpload(e.target.files)} disabled={uploading} />
         </label>
       </div>
 
       {years.length === 0 ? (
-        <div className="rounded-2xl border-2 border-dashed border-[#0F4C81]/20 bg-white p-10 text-center text-muted-foreground">
+        <div className="rounded-2xl border-2 border-dashed border-[#1C3A54]/20 bg-white p-10 text-center text-muted-foreground">
           Belum ada laporan yang diunggah.
         </div>
       ) : (
         years.map((y) => (
           <div key={y} className="space-y-3">
-            <h2 className="text-[#0F4C81]" style={{ fontWeight: 700 }}>Tahun {y}</h2>
+            <h2 className="text-[#1C3A54]" style={{ fontWeight: 700 }}>Tahun {y}</h2>
             <div className="grid sm:grid-cols-2 gap-3">
               {reports.filter((r) => r.year === y).map((r) => {
                 const meta = FILE_META[r.fileType] || FILE_META.other;
@@ -110,7 +110,7 @@ export function ReportsPage() {
                     </div>
                     <button
                       onClick={() => setDel({ id: r.id, title: r.title })}
-                      className="grid place-items-center size-9 shrink-0 rounded-lg bg-red-50 text-[#D32F2F] hover:bg-[#D32F2F] hover:text-white transition"
+                      className="grid place-items-center size-9 shrink-0 rounded-lg bg-red-50 text-[#9C2B2F] hover:bg-[#9C2B2F] hover:text-white transition"
                       title="Hapus laporan"
                     >
                       <Trash2 className="size-4" />

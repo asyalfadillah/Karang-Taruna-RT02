@@ -8,7 +8,7 @@ import { useLang } from "../../i18n/i18n";
 const EventIcon = ({ type, className }: { type: AgendaEvent["type"]; className?: string }) =>
   type === "national" ? <Flag className={className} /> : type === "islamic" ? <Moon className={className} /> : <Sparkles className={className} />;
 
-const eventBg = (type: AgendaEvent["type"]) => (type === "national" ? "#D32F2F" : type === "islamic" ? "#2e7d32" : "#D4AF37");
+const eventBg = (type: AgendaEvent["type"]) => (type === "national" ? "#9C2B2F" : type === "islamic" ? "#2e7d32" : "#A8802F");
 
 export function Kalender() {
   const { t, td } = useLang();
@@ -54,7 +54,7 @@ export function Kalender() {
   };
 
   return (
-    <section id="kalender" className="py-24 bg-[#F5F7FA]">
+    <section id="kalender" className="py-24 bg-[#F6F2EA]">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <Reveal>
           <SectionHeading
@@ -69,9 +69,9 @@ export function Kalender() {
           <div className="grid md:grid-cols-3 gap-3 mb-8">
             {countdowns.map((e, i) => (
               <Reveal key={e.id} delay={i * 0.1}>
-                <div className="rounded-xl p-4 bg-gradient-to-br from-[#0F4C81] to-[#0b3660] text-white shadow-lg h-full">
+                <div className="rounded-xl p-4 bg-gradient-to-br from-[#1C3A54] to-[#122A3D] text-white shadow-lg h-full">
                   <div className="flex items-center gap-2 mb-1">
-                    <EventIcon type={e.type} className="size-3.5 text-[#D4AF37]" />
+                    <EventIcon type={e.type} className="size-3.5 text-[#A8802F]" />
                     <span className="text-[11px] text-white/70">{formatDate(e.date)}</span>
                   </div>
                   <h3 className="mb-3 text-sm line-clamp-1" style={{ fontWeight: 700 }}>{e.title}</h3>
@@ -87,12 +87,12 @@ export function Kalender() {
           <Reveal className="lg:col-span-2">
             <div className="bg-white rounded-2xl border border-black/5 p-6">
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-[#0F4C81] flex items-center gap-2" style={{ fontWeight: 600 }}>
+                <h3 className="text-[#1C3A54] flex items-center gap-2" style={{ fontWeight: 600 }}>
                   <CalendarDays className="size-5" /> {MONTHS[cursor.m]} {cursor.y}
                 </h3>
                 <div className="flex gap-1">
-                  <button onClick={() => move(-1)} className="grid place-items-center size-9 rounded-lg bg-[#F5F7FA] hover:bg-[#0F4C81] hover:text-white transition"><ChevronLeft className="size-5" /></button>
-                  <button onClick={() => move(1)} className="grid place-items-center size-9 rounded-lg bg-[#F5F7FA] hover:bg-[#0F4C81] hover:text-white transition"><ChevronRight className="size-5" /></button>
+                  <button onClick={() => move(-1)} className="grid place-items-center size-9 rounded-lg bg-[#F6F2EA] hover:bg-[#1C3A54] hover:text-white transition"><ChevronLeft className="size-5" /></button>
+                  <button onClick={() => move(1)} className="grid place-items-center size-9 rounded-lg bg-[#F6F2EA] hover:bg-[#1C3A54] hover:text-white transition"><ChevronRight className="size-5" /></button>
                 </div>
               </div>
               <div className="grid grid-cols-7 gap-1 text-center text-xs text-muted-foreground mb-1">
@@ -106,12 +106,12 @@ export function Kalender() {
                     <div
                       key={i}
                       className={`min-h-16 rounded-lg p-1.5 text-left border transition ${
-                        isToday(d) ? "border-[#D32F2F] bg-red-50" : evs.length ? "border-[#0F4C81]/20 bg-[#0F4C81]/5" : "border-transparent hover:bg-[#F5F7FA]"
+                        isToday(d) ? "border-[#9C2B2F] bg-red-50" : evs.length ? "border-[#1C3A54]/20 bg-[#1C3A54]/5" : "border-transparent hover:bg-[#F6F2EA]"
                       }`}
                     >
-                      <span className={`text-xs ${isToday(d) ? "text-[#D32F2F]" : "text-foreground"}`} style={{ fontWeight: isToday(d) ? 700 : 400 }}>{d}</span>
+                      <span className={`text-xs ${isToday(d) ? "text-[#9C2B2F]" : "text-foreground"}`} style={{ fontWeight: isToday(d) ? 700 : 400 }}>{d}</span>
                       {evs.slice(0, 2).map((e) => (
-                        <div key={e.id} title={e.title} className={`mt-0.5 truncate text-[10px] px-1 rounded ${e.type === "national" ? "bg-[#D32F2F]/15 text-[#D32F2F]" : e.type === "islamic" ? "bg-green-100 text-green-700" : "bg-[#D4AF37]/20 text-[#8a6d13]"}`}>
+                        <div key={e.id} title={e.title} className={`mt-0.5 truncate text-[10px] px-1 rounded ${e.type === "national" ? "bg-[#9C2B2F]/15 text-[#9C2B2F]" : e.type === "islamic" ? "bg-green-100 text-green-700" : "bg-[#A8802F]/20 text-[#8a6d13]"}`}>
                           {e.title}
                         </div>
                       ))}
@@ -121,9 +121,9 @@ export function Kalender() {
                 })}
               </div>
               <div className="mt-4 flex flex-wrap gap-4 text-xs text-muted-foreground">
-                <span className="flex items-center gap-1"><span className="size-3 rounded bg-[#D32F2F]/40" /> {t("kalender.legendNational")}</span>
+                <span className="flex items-center gap-1"><span className="size-3 rounded bg-[#9C2B2F]/40" /> {t("kalender.legendNational")}</span>
                 <span className="flex items-center gap-1"><span className="size-3 rounded bg-green-300" /> {t("kalender.legendIslamic")}</span>
-                <span className="flex items-center gap-1"><span className="size-3 rounded bg-[#D4AF37]/50" /> {t("kalender.legendActivity")}</span>
+                <span className="flex items-center gap-1"><span className="size-3 rounded bg-[#A8802F]/50" /> {t("kalender.legendActivity")}</span>
               </div>
             </div>
           </Reveal>
@@ -131,13 +131,13 @@ export function Kalender() {
           {/* upcoming list */}
           <Reveal delay={0.1}>
             <div className="bg-white rounded-2xl border border-black/5 p-6 h-full">
-              <h3 className="text-[#0F4C81] mb-4" style={{ fontWeight: 600 }}>{t("kalender.upcoming")}</h3>
+              <h3 className="text-[#1C3A54] mb-4" style={{ fontWeight: 600 }}>{t("kalender.upcoming")}</h3>
               {upcoming.length === 0 ? (
                 <p className="text-sm text-muted-foreground">{t("kalender.noUpcoming")}</p>
               ) : (
                 <div className="space-y-3">
                   {upcoming.map((e) => (
-                    <div key={e.id} className="flex gap-3 p-3 rounded-xl bg-[#F5F7FA]">
+                    <div key={e.id} className="flex gap-3 p-3 rounded-xl bg-[#F6F2EA]">
                       <div className="grid place-items-center size-12 rounded-lg text-white shrink-0" style={{ background: eventBg(e.type) }}>
                         <EventIcon type={e.type} className="size-5" />
                       </div>

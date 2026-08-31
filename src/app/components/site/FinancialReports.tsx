@@ -6,9 +6,9 @@ import { useLang } from "../../i18n/i18n";
 
 const FILE_META: Record<ReportFileType, { label: string; icon: typeof FileText; color: string }> = {
   xlsx: { label: "Excel", icon: FileSpreadsheet, color: "#1D6F42" },
-  pdf: { label: "PDF", icon: FileText, color: "#D32F2F" },
+  pdf: { label: "PDF", icon: FileText, color: "#9C2B2F" },
   docx: { label: "Word", icon: FileText, color: "#2B579A" },
-  other: { label: "File", icon: FileIcon, color: "#0F4C81" },
+  other: { label: "File", icon: FileIcon, color: "#1C3A54" },
 };
 
 function PreviewModal({ report, onClose }: { report: Report; onClose: () => void }) {
@@ -30,7 +30,7 @@ function PreviewModal({ report, onClose }: { report: Report; onClose: () => void
           </button>
         </div>
 
-        <div className="flex-1 overflow-auto bg-[#F5F7FA]">
+        <div className="flex-1 overflow-auto bg-[#F6F2EA]">
           {report.fileType === "pdf" ? (
             <iframe src={report.fileUrl} title={report.title} className="w-full h-full min-h-[65vh]" />
           ) : (
@@ -51,7 +51,7 @@ function PreviewModal({ report, onClose }: { report: Report; onClose: () => void
             download={report.fileName}
             target="_blank"
             rel="noreferrer"
-            className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl bg-[#0F4C81] text-white hover:bg-[#0b3660] transition"
+            className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl bg-[#1C3A54] text-white hover:bg-[#122A3D] transition"
             style={{ fontWeight: 600 }}
           >
             <Download className="size-4" /> {t("reports.download")} {meta.label}
@@ -69,16 +69,16 @@ function ReportRow({ r, onOpen }: { r: Report; onOpen: () => void }) {
   return (
     <button
       onClick={onOpen}
-      className="flex items-center gap-3 rounded-xl border border-black/5 bg-white p-4 hover:shadow-md hover:border-[#0F4C81]/20 transition group text-left"
+      className="flex items-center gap-3 rounded-xl border border-black/5 bg-white p-4 hover:shadow-md hover:border-[#1C3A54]/20 transition group text-left"
     >
       <span className="grid place-items-center size-11 shrink-0 rounded-lg text-white" style={{ backgroundColor: meta.color }}>
         <Icon className="size-5" />
       </span>
       <div className="min-w-0 flex-1">
-        <p className="text-sm text-[#0F4C81] truncate" style={{ fontWeight: 600 }}>{r.title}</p>
+        <p className="text-sm text-[#1C3A54] truncate" style={{ fontWeight: 600 }}>{r.title}</p>
         <p className="text-xs text-muted-foreground">{t("reports.format")} {meta.label}</p>
       </div>
-      <Eye className="size-4 text-muted-foreground shrink-0 group-hover:text-[#0F4C81] transition" />
+      <Eye className="size-4 text-muted-foreground shrink-0 group-hover:text-[#1C3A54] transition" />
     </button>
   );
 }
@@ -116,21 +116,21 @@ export function FinancialReports() {
             const open = openYear === year;
             return (
               <Reveal key={year} delay={i * 0.05}>
-                <div className="rounded-2xl border border-black/5 overflow-hidden bg-[#F5F7FA]">
+                <div className="rounded-2xl border border-black/5 overflow-hidden bg-[#F6F2EA]">
                   <button
                     onClick={() => setOpenYear(open ? null : year)}
                     className="w-full flex items-center justify-between gap-3 p-4 md:p-5 text-left"
                   >
                     <span className="flex items-center gap-3">
-                      <span className="grid place-items-center size-10 rounded-lg bg-gradient-to-br from-[#0F4C81] to-[#D32F2F] text-white">
+                      <span className="grid place-items-center size-10 rounded-lg bg-[#1C3A54] text-white">
                         <Wallet className="size-5" />
                       </span>
                       <span>
-                        <span className="block text-[#0F4C81]" style={{ fontWeight: 700 }}>{t("reports.year")} {year}</span>
+                        <span className="block text-[#1C3A54]" style={{ fontWeight: 700 }}>{t("reports.year")} {year}</span>
                         <span className="block text-xs text-muted-foreground">{list.length} {t("reports.docs")}</span>
                       </span>
                     </span>
-                    <ChevronDown className={`size-5 text-[#0F4C81] transition-transform ${open ? "rotate-180" : ""}`} />
+                    <ChevronDown className={`size-5 text-[#1C3A54] transition-transform ${open ? "rotate-180" : ""}`} />
                   </button>
                   {open && (
                     <div className="px-4 md:px-5 pb-5 grid sm:grid-cols-2 gap-3">

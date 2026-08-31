@@ -7,9 +7,9 @@ export function DashboardPage() {
   const { albums, photos, videos, visitors } = useStore();
 
   const stats = [
-    { label: "Total Album", value: albums.length, icon: FolderOpen, color: "#0F4C81" },
-    { label: "Total Foto", value: photos.length, icon: ImageIcon, color: "#D32F2F" },
-    { label: "Total Video", value: videos.length, icon: Film, color: "#D4AF37" },
+    { label: "Total Album", value: albums.length, icon: FolderOpen, color: "#1C3A54" },
+    { label: "Total Foto", value: photos.length, icon: ImageIcon, color: "#9C2B2F" },
+    { label: "Total Video", value: videos.length, icon: Film, color: "#A8802F" },
     { label: "Total Pengunjung", value: visitors, icon: Users, color: "#2e7d32" },
   ];
 
@@ -31,10 +31,10 @@ export function DashboardPage() {
     <div className="space-y-8">
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl text-[#0F4C81]" style={{ fontWeight: 700 }}>Dashboard</h1>
+          <h1 className="text-2xl text-[#1C3A54]" style={{ fontWeight: 700 }}>Dashboard</h1>
           <p className="text-muted-foreground text-sm">Selamat datang kembali, Diki Fadillah 👋</p>
         </div>
-        <Link to="/adminrt02/albums" className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#D32F2F] text-white hover:bg-[#b71c1c] transition shadow-lg" style={{ fontWeight: 600 }}>
+        <Link to="/adminrt02/albums" className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#9C2B2F] text-white hover:bg-[#7a1f22] transition shadow-lg" style={{ fontWeight: 600 }}>
           <Plus className="size-5" /> Tambah Album
         </Link>
       </div>
@@ -47,7 +47,7 @@ export function DashboardPage() {
               <span className="grid place-items-center size-12 rounded-xl text-white" style={{ background: s.color }}><s.icon className="size-6" /></span>
               <TrendingUp className="size-5 text-green-500" />
             </div>
-            <p className="mt-4 text-3xl text-[#0F4C81]" style={{ fontWeight: 800 }}>{s.value.toLocaleString("id-ID")}</p>
+            <p className="mt-4 text-3xl text-[#1C3A54]" style={{ fontWeight: 800 }}>{s.value.toLocaleString("id-ID")}</p>
             <p className="text-sm text-muted-foreground">{s.label}</p>
           </div>
         ))}
@@ -56,11 +56,11 @@ export function DashboardPage() {
       <div className="grid lg:grid-cols-3 gap-6">
         {/* chart */}
         <div className="lg:col-span-2 bg-white rounded-2xl border border-black/5 p-6">
-          <h3 className="text-[#0F4C81] mb-4" style={{ fontWeight: 600 }}>Media per Album</h3>
+          <h3 className="text-[#1C3A54] mb-4" style={{ fontWeight: 600 }}>Media per Album</h3>
           {chartData.length === 0 ? (
-            <div className="h-[300px] grid place-items-center text-center text-muted-foreground rounded-xl border-2 border-dashed border-[#0F4C81]/15">
+            <div className="h-[300px] grid place-items-center text-center text-muted-foreground rounded-xl border-2 border-dashed border-[#1C3A54]/15">
               <div>
-                <FolderOpen className="size-10 mx-auto mb-2 text-[#0F4C81]/40" />
+                <FolderOpen className="size-10 mx-auto mb-2 text-[#1C3A54]/40" />
                 <p className="text-sm">Belum ada album. Tambahkan album untuk melihat grafik.</p>
               </div>
             </div>
@@ -70,8 +70,8 @@ export function DashboardPage() {
                 <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#eee" />
                 <XAxis dataKey="name" tick={{ fontSize: 12 }} />
                 <Tooltip />
-                <Bar dataKey="Foto" fill="#0F4C81" radius={[6, 6, 0, 0]} />
-                <Bar dataKey="Video" fill="#D32F2F" radius={[6, 6, 0, 0]} />
+                <Bar dataKey="Foto" fill="#1C3A54" radius={[6, 6, 0, 0]} />
+                <Bar dataKey="Video" fill="#9C2B2F" radius={[6, 6, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
           )}
@@ -79,10 +79,10 @@ export function DashboardPage() {
 
         {/* recent albums */}
         <div className="bg-white rounded-2xl border border-black/5 p-6">
-          <h3 className="text-[#0F4C81] mb-4" style={{ fontWeight: 600 }}>Album Terbaru</h3>
+          <h3 className="text-[#1C3A54] mb-4" style={{ fontWeight: 600 }}>Album Terbaru</h3>
           <div className="space-y-3">
             {albums.slice(0, 5).map((a) => (
-              <Link key={a.id} to="/adminrt02/albums" className="flex items-center gap-3 p-2 rounded-xl hover:bg-[#F5F7FA] transition">
+              <Link key={a.id} to="/adminrt02/albums" className="flex items-center gap-3 p-2 rounded-xl hover:bg-[#F6F2EA] transition">
                 <img src={a.cover} alt={a.name} className="size-12 rounded-lg object-cover" />
                 <div className="min-w-0 flex-1">
                   <p className="text-sm truncate" style={{ fontWeight: 500 }}>{a.name}</p>

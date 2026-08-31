@@ -12,7 +12,7 @@ export function PosterSection() {
   if (active.length === 0) return null;
 
   return (
-    <section id="poster-informasi" className="py-24 bg-[#F5F7FA]">
+    <section id="poster-informasi" className="py-24 bg-[#F6F2EA]">
       <div className="max-w-5xl mx-auto px-4 md:px-8">
         <Reveal>
           <SectionHeading eyebrow={t("poster.eyebrow")} title={t("poster.title")} desc={t("poster.desc")} />
@@ -29,7 +29,7 @@ export function PosterSection() {
                   <div className="aspect-[3/4] overflow-hidden">
                     <img src={p.imageUrl} alt={p.title} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                   </div>
-                  <p className="p-3 text-sm text-[#0F4C81] truncate" style={{ fontWeight: 600 }}>{p.title}</p>
+                  <p className="p-3 text-sm text-[#1C3A54] truncate" style={{ fontWeight: 600 }}>{p.title}</p>
                 </Wrapper>
               </Reveal>
             );
@@ -67,7 +67,7 @@ export function PosterPopup() {
       <div className="relative w-full max-w-md" onClick={(e) => e.stopPropagation()}>
         <button
           onClick={close}
-          className="absolute -top-3 -right-3 grid place-items-center size-9 rounded-full bg-white text-[#0F4C81] shadow-lg hover:bg-[#D32F2F] hover:text-white transition z-10"
+          className="absolute -top-3 -right-3 grid place-items-center size-9 rounded-full bg-white text-[#1C3A54] shadow-lg hover:bg-[#9C2B2F] hover:text-white transition z-10"
         >
           <X className="size-5" />
         </button>
@@ -80,7 +80,7 @@ export function PosterPopup() {
             <img src={poster.imageUrl} alt={poster.title} className="w-full max-h-[75vh] object-contain bg-black" />
           )}
           <div className="p-4 flex items-center gap-2">
-            <Megaphone className="size-4 text-[#D32F2F] shrink-0" />
+            <Megaphone className="size-4 text-[#9C2B2F] shrink-0" />
             <p className="text-sm truncate" style={{ fontWeight: 600 }}>{poster.title}</p>
           </div>
         </div>
