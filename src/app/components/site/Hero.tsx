@@ -37,8 +37,7 @@ export function Hero() {
       {/* content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-8 pb-16 pt-24 md:py-28 w-full">
         <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }} className="max-w-2xl">
-          <div className="flex items-center gap-3 mb-5">
-            <span className="h-px w-8 bg-[#A8802F]" />
+          <div className="mb-5">
             <span className="text-xs tracking-[0.18em] uppercase text-[#d9bd7a]" style={{ fontWeight: 600 }}>
               {t("hero.badge")}
             </span>
@@ -54,7 +53,7 @@ export function Hero() {
           <div className="mt-7 md:mt-9">
             <button
               onClick={() => scrollTo("#dokumentasi")}
-              className="group flex items-center gap-2.5 text-white border-b border-white/40 pb-1.5 hover:border-[#A8802F] transition-colors"
+              className="group flex items-center gap-2.5 text-white hover:text-[#A8802F] transition-colors"
               style={{ fontWeight: 500 }}
             >
               {t("hero.cta")}

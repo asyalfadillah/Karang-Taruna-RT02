@@ -38,8 +38,7 @@ export function SectionHeading({
   return (
     <div className={`max-w-2xl mb-12 ${isCenter ? "mx-auto text-center" : ""}`}>
       {eyebrow && (
-        <div className={`flex items-center gap-3 mb-4 ${isCenter ? "justify-center" : ""}`}>
-          <span className="h-px w-8 bg-[#A8802F]" />
+        <div className={`mb-4 ${isCenter ? "text-center" : ""}`}>
           <span className="text-xs tracking-[0.18em] uppercase text-[#A8802F]" style={{ fontWeight: 600 }}>
             {eyebrow}
           </span>

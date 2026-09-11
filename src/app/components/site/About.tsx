@@ -20,7 +20,7 @@ export function About() {
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-10">
           {FEATURES.map((f, i) => (
             <Reveal key={f.title} delay={i * 0.08}>
-              <div className="h-full pt-5 border-t-2 border-[#211C17]/10">
+              <div className="h-full pt-2">
                 <span className="block text-3xl text-[#A8802F]/70" style={{ fontFamily: "var(--font-heading)", fontWeight: 500 }}>
                   {f.n}
                 </span>
