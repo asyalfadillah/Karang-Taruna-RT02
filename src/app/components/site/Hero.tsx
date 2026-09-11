@@ -45,7 +45,7 @@ export function Hero() {
           </div>
           <h1 className="text-white text-4xl md:text-6xl leading-[1.08]" style={{ fontWeight: 600 }}>
             {t("hero.titlePrefix")}{" "}
-            <em className="text-[#c79a4b] not-italic md:italic">{t("hero.titleHighlight")}</em>
+            <span className="text-[#c79a4b]">{t("hero.titleHighlight")}</span>
           </h1>
           <p className="mt-5 md:mt-6 text-white/80 text-base md:text-lg max-w-xl leading-relaxed">
             {t("hero.desc")}
