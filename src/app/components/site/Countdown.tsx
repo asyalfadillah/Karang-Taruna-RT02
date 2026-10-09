@@ -11,7 +11,7 @@ function diff(target: Date) {
   };
 }
 
-export function Countdown({ date, compact }: { date: string; compact?: boolean }) {
+export function Countdown({ date, compact, large }: { date: string; compact?: boolean; large?: boolean }) {
   const target = new Date(date + "T00:00:00");
   const [t, setT] = useState(() => diff(target));
 
@@ -41,11 +41,11 @@ export function Countdown({ date, compact }: { date: string; compact?: boolean }
   }
 
   return (
-    <div className="flex gap-1.5">
+    <div className={large ? "flex gap-3 justify-center" : "flex gap-1.5"}>
       {items.map((i) => (
-        <div key={i.l} className="flex-1 rounded-lg bg-white/10 border border-white/20 backdrop-blur px-1.5 py-1.5 text-center">
-          <div className="text-base text-white" style={{ fontWeight: 800 }}>{String(i.v).padStart(2, "0")}</div>
-          <div className="text-[9px] text-white/70 uppercase tracking-wide">{i.l}</div>
+        <div key={i.l} className={`rounded-lg bg-white/10 border border-white/20 backdrop-blur text-center ${large ? "px-2 py-4 w-20 md:w-28" : "flex-1 px-1.5 py-1.5"}`}>
+          <div className={large ? "text-3xl md:text-4xl text-white" : "text-base text-white"} style={{ fontWeight: 800 }}>{String(i.v).padStart(2, "0")}</div>
+          <div className={large ? "text-xs mt-1 text-white/70 uppercase tracking-wide" : "text-[9px] text-white/70 uppercase tracking-wide"}>{i.l}</div>
         </div>
       ))}
     </div>

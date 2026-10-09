@@ -73,7 +73,7 @@ app.post(`${P}/change-password`, async (c) => {
 /* ---- ambil semua data (publik) ---------------------------------------- */
 app.get(`${P}/data`, async (c) => {
   try {
-    const [albums, photos, videos, events, comments, reports, posters] = await Promise.all([
+    const [albums, photos, videos, events, comments, reports, posters, articles] = await Promise.all([
       kv.getByPrefix("album:"),
       kv.getByPrefix("photo:"),
       kv.getByPrefix("video:"),
@@ -81,6 +81,7 @@ app.get(`${P}/data`, async (c) => {
       kv.getByPrefix("comment:"),
       kv.getByPrefix("report:"),
       kv.getByPrefix("poster:"),
+      kv.getByPrefix("article:"),
     ]);
     const autoPrefs = (await kv.get("autoprefs")) || {};
     const visitors = (await kv.get("visitors")) || 0;
@@ -92,6 +93,7 @@ app.get(`${P}/data`, async (c) => {
       comments: (comments || []).sort((a: any, b: any) => (b.createdAt || "").localeCompare(a.createdAt || "")),
       reports: reports || [],
       posters: posters || [],
+      articles: (articles || []).sort((a: any, b: any) => (b.createdAt || "").localeCompare(a.createdAt || "")),
       autoPrefs,
       visitors,
     });
@@ -166,6 +168,7 @@ crud("video", "video:");
 crud("event", "event:");
 crud("report", "report:");
 crud("poster", "poster:");
+crud("article", "article:");
 
 /* ---- album (dengan cascade delete foto/video) ------------------------- */
 app.post(`${P}/album`, async (c) => {

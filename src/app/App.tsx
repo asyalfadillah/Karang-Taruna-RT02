@@ -20,6 +20,7 @@ const GalleryPage = lazy(() => import("./pages/admin/GalleryPage").then((m) => (
 const EventsPage = lazy(() => import("./pages/admin/EventsPage").then((m) => ({ default: m.EventsPage })));
 const CommentsPage = lazy(() => import("./pages/admin/CommentsPage").then((m) => ({ default: m.CommentsPage })));
 const ReportsPage = lazy(() => import("./pages/admin/ReportsPage").then((m) => ({ default: m.ReportsPage })));
+const ArticlesPage = lazy(() => import("./pages/admin/ArticlesPage").then((m) => ({ default: m.ArticlesPage })));
 const PostersPage = lazy(() => import("./pages/admin/PostersPage").then((m) => ({ default: m.PostersPage })));
 const SettingsPage = lazy(() => import("./pages/admin/SettingsPage").then((m) => ({ default: m.SettingsPage })));
 const ProfilePage = lazy(() => import("./pages/admin/ProfilePage").then((m) => ({ default: m.ProfilePage })));
@@ -55,6 +56,7 @@ export default function App() {
               <Route path="comments" element={<CommentsPage />} />
               <Route path="reports" element={<ReportsPage />} />
               <Route path="posters" element={<PostersPage />} />
+              <Route path="articles" element={<ArticlesPage />} />
               <Route path="settings" element={<SettingsPage />} />
               <Route path="profile" element={<ProfilePage />} />
             </Route>

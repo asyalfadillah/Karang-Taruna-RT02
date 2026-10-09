@@ -64,11 +64,11 @@ export function Contact() {
           <Reveal delay={0.1}>
             <div className="rounded-2xl overflow-hidden border border-black/5 shadow-lg h-full min-h-[420px]">
               <iframe
-                title="Lokasi RT 02 Kalibata"
-                src="https://www.google.com/maps?q=Kalibata,Pancoran,Jakarta+Selatan&output=embed"
+                title="Lokasi Sekretariat Karang Taruna RT.02/RW.003"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d247.87560491042578!2d106.83417759958422!3d-6.262454489020805!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f325e810c345%3A0xb55a6401505b2158!2sSekretariat%20Karang%20Taruna%20RT.02%2FRW.003!5e0!3m2!1sen!2sid!4v1791351961724!5m2!1sen!2sid"
                 className="size-full min-h-[420px]"
                 loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
+                referrerPolicy="strict-origin-when-cross-origin"
               />
             </div>
           </Reveal>

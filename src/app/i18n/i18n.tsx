@@ -43,6 +43,8 @@ const dict = {
       viewAllDocs: "Lihat Semua Dokumentasi", noPhotos: "Belum ada foto pada album ini.",
       noVideos: "Belum ada video pada album ini.", loadMore: "Muat Lebih Banyak", more: "lagi",
     },
+    jakarta: { eyebrow: "Menuju Hari Bersejarah", title: "5 Abad Kota Jakarta", desc: "Hitung mundur menuju HUT ke-500 Jakarta, 22 Juni 2027.", days:"Hari", hours:"Jam", minutes:"Menit", seconds:"Detik" },
+    info: { eyebrow: "Info Warga", title: "Informasi Lingkungan & Kesehatan", desc: "Kabar dan imbauan dari instansi terkait di Jakarta untuk warga RT 02.", all: "Semua", lingkungan: "Lingkungan", kesehatan: "Kesehatan", read: "Baca di sumber resmi", empty: "Belum ada informasi.", portals: "Portal resmi" },
     kalender: {
       eyebrow: "Agenda", title: "Kalender Kegiatan",
       desc: "Jadwal kegiatan Karang Taruna RT 02, hari besar nasional & Islam, dan hitung mundur menuju acara mendatang.",
@@ -130,6 +132,8 @@ const dict = {
       viewAllDocs: "View All Documentation", noPhotos: "No photos in this album yet.",
       noVideos: "No videos in this album yet.", loadMore: "Load More", more: "more",
     },
+    jakarta: { eyebrow: "Towards a Historic Day", title: "5 Centuries of Jakarta", desc: "Countdown to the 500th anniversary of Jakarta, 22 June 2027.", days:"Days", hours:"Hours", minutes:"Minutes", seconds:"Seconds" },
+    info: { eyebrow: "Community Info", title: "Environment & Health Information", desc: "News and advisories from relevant Jakarta agencies for RT 02 residents.", all: "All", lingkungan: "Environment", kesehatan: "Health", read: "Read at official source", empty: "No information yet.", portals: "Official portals" },
     kalender: {
       eyebrow: "Agenda", title: "Event Calendar",
       desc: "Karang Taruna RT 02 event schedule, national & Islamic holidays, and a countdown to upcoming events.",
@@ -217,6 +221,8 @@ const dict = {
       viewAllDocs: "عرض كل التوثيق", noPhotos: "لا توجد صور في هذا الألبوم بعد.",
       noVideos: "لا توجد فيديوهات في هذا الألبوم بعد.", loadMore: "تحميل المزيد", more: "أخرى",
     },
+    jakarta: { eyebrow: "نحو يوم تاريخي", title: "خمسة قرون من جاكرتا", desc: "العد التنازلي للذكرى الخمسمئة لجاكرتا، 22 يونيو 2027.", days:"أيام", hours:"ساعات", minutes:"دقائق", seconds:"ثوانٍ" },
+    info: { eyebrow: "معلومات للسكان", title: "معلومات البيئة والصحة", desc: "أخبار وإرشادات من الجهات المعنية في جاكرتا لسكان RT 02.", all: "الكل", lingkungan: "البيئة", kesehatan: "الصحة", read: "اقرأ في المصدر الرسمي", empty: "لا توجد معلومات بعد.", portals: "البوابات الرسمية" },
     kalender: {
       eyebrow: "الأجندة", title: "تقويم الفعاليات",
       desc: "جدول فعاليات كارانج تارونا RT 02، الأعياد الوطنية والإسلامية، والعد التنازلي للفعاليات القادمة.",

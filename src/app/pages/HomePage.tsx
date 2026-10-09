@@ -8,6 +8,8 @@ import { PhotoGallery } from "../components/site/PhotoGallery";
 import { PosterSection, PosterPopup } from "../components/site/Poster";
 import { VideoGallery } from "../components/site/VideoGallery";
 import { FinancialReports } from "../components/site/FinancialReports";
+import { JakartaAnniversary } from "../components/site/JakartaAnniversary";
+import { Articles } from "../components/site/Articles";
 import { Donors } from "../components/site/Donors";
 import { Comments } from "../components/site/Comments";
 import { Contact } from "../components/site/Contact";
@@ -31,10 +33,12 @@ export function HomePage() {
       <About />
       <Documentation onSearch={openSearch} />
       <Kalender />
+      <JakartaAnniversary />
       <PhotoGallery />
       <PosterSection />
       <VideoGallery />
       <FinancialReports />
+      <Articles />
       <Donors />
       <Comments />
       <Contact />
