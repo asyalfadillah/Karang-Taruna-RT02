@@ -18,7 +18,9 @@ app.use(
   }),
 );
 
-const DEFAULT_ADMIN_SECRET = "201204";
+// Sandi bawaan diambil dari environment variable ADMIN_SECRET (Supabase → Edge Functions → Secrets).
+// Kalau belum diset, jatuh ke "020316" — segera ganti lewat menu Profil Admin atau set ADMIN_SECRET.
+const DEFAULT_ADMIN_SECRET = Deno.env.get("ADMIN_SECRET") || "020316";
 const uid = () => Math.random().toString(36).slice(2, 10) + Date.now().toString(36).slice(-4);
 
 /* ---- admin auth helper ------------------------------------------------ */
@@ -35,12 +37,30 @@ async function requireAdmin(c: any): Promise<Response | null> {
   return null;
 }
 
+/* ---- pembatas percobaan (rate limit) berbasis KV ------------------------ */
+async function rateLimited(c: any, bucket: string, max: number, windowMs: number): Promise<boolean> {
+  const ip = (c.req.header("x-forwarded-for") || "unknown").split(",")[0].trim();
+  const key = `rl:${bucket}:${ip}`;
+  const now = Date.now();
+  const rec: any = (await kv.get(key)) || { count: 0, resetAt: now + windowMs };
+  if (now > rec.resetAt) {
+    rec.count = 0;
+    rec.resetAt = now + windowMs;
+  }
+  rec.count += 1;
+  await kv.set(key, rec);
+  return rec.count > max;
+}
+
 /* ---- health ----------------------------------------------------------- */
 app.get(`${P}/health`, (c) => c.json({ status: "ok" }));
 
 /* ---- login: validasi sandi, kembalikan secret untuk operasi tulis ----- */
 app.post(`${P}/login`, async (c) => {
   try {
+    if (await rateLimited(c, "login", 5, 15 * 60 * 1000)) {
+      return c.json({ ok: false, error: "Terlalu banyak percobaan login. Coba lagi 15 menit lagi." }, 429);
+    }
     const { username, password } = await c.req.json();
     const secret = await adminSecret();
     if ((username || "").trim() === "admin" && password === secret) {
@@ -225,11 +245,17 @@ app.delete(`${P}/album/:id`, async (c) => {
 /* ---- komentar (kirim publik, hapus khusus admin) ---------------------- */
 app.post(`${P}/comment`, async (c) => {
   try {
+    if (await rateLimited(c, "comment", 5, 10 * 60 * 1000)) {
+      return c.json({ error: "Terlalu banyak komentar. Coba lagi beberapa menit lagi." }, 429);
+    }
     const body = await c.req.json();
     const name = String(body.name || "").trim().slice(0, 60);
     const message = String(body.message || "").trim().slice(0, 500);
     if (!name || !message) {
       return c.json({ error: "Nama dan komentar wajib diisi." }, 400);
+    }
+    if (/https?:\/\/|www\./i.test(message) || /https?:\/\/|www\./i.test(name)) {
+      return c.json({ error: "Komentar tidak boleh berisi link." }, 400);
     }
     const id = uid();
     const item = { id, name, message, createdAt: new Date().toISOString() };

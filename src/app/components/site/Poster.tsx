@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { safeUrl } from "../../data/safeUrl";
 import { X, Megaphone } from "lucide-react";
 import { Reveal, SectionHeading } from "./Reveal";
 import { useStore } from "../../data/store";
@@ -73,7 +74,7 @@ export function PosterPopup() {
         </button>
         <div className="rounded-2xl overflow-hidden bg-white shadow-2xl">
           {poster.link ? (
-            <a href={poster.link} target="_blank" rel="noreferrer">
+            <a href={safeUrl(poster.link)} target="_blank" rel="noreferrer">
               <img src={poster.imageUrl} alt={poster.title} className="w-full max-h-[75vh] object-contain bg-black" />
             </a>
           ) : (

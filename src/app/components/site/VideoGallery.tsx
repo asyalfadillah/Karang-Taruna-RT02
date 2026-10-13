@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { safeUrl } from "../../data/safeUrl";
 import { AnimatePresence, motion } from "motion/react";
 import { Play, Clock, Calendar, X, ExternalLink } from "lucide-react";
 import { useStore, formatDate, VIDEO_SOURCE_LABEL, type Video } from "../../data/store";
@@ -13,7 +14,7 @@ export function VideoGallery() {
 
   const openVideo = (v: Video) => {
     if (isEmbeddable(v)) setActive(v);
-    else window.open(v.url, "_blank", "noopener");
+    else window.open(safeUrl(v.url), "_blank", "noopener");
   };
 
   return (

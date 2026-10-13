@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { safeUrl } from "../data/safeUrl";
 import { Link, useParams } from "react-router";
 import { ArrowLeft, Calendar, Image as ImageIcon, Film, Play, Download, ZoomIn, X, FolderOpen, ExternalLink } from "lucide-react";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
@@ -57,7 +58,7 @@ export function AlbumDetailPage() {
 
         {album.driveLink && (
           <a
-            href={album.driveLink}
+            href={safeUrl(album.driveLink)}
             target="_blank"
             rel="noreferrer"
             className="mt-5 inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#A8802F] text-white hover:bg-[#b8942c] transition shadow-lg"
@@ -125,7 +126,7 @@ export function AlbumDetailPage() {
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {albumVideos.map((v) => (
                 <div key={v.id} className="group rounded-2xl overflow-hidden border border-black/5 shadow-sm hover:shadow-xl transition">
-                  <button onClick={() => (isEmbeddable(v) ? setActiveVideo(v) : window.open(v.url, "_blank", "noopener"))} className="relative block w-full aspect-video overflow-hidden">
+                  <button onClick={() => (isEmbeddable(v) ? setActiveVideo(v) : window.open(safeUrl(v.url), "_blank", "noopener"))} className="relative block w-full aspect-video overflow-hidden">
                     <img src={v.thumbnail} alt={v.title} loading="lazy" className="size-full object-cover group-hover:scale-110 transition-transform duration-700" />
                     <span className="absolute inset-0 bg-black/30 grid place-items-center">
                       <span className="grid place-items-center size-14 rounded-full bg-[#9C2B2F] text-white group-hover:scale-110 transition"><Play className="size-6 ml-1" fill="currentColor" /></span>

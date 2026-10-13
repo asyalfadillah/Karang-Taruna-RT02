@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { safeUrl } from "../../data/safeUrl";
 import { ExternalLink, Leaf, HeartPulse } from "lucide-react";
 import { useStore, formatDate, type ArticleCategory } from "../../data/store";
 import { Reveal, SectionHeading } from "./Reveal";
@@ -56,7 +57,7 @@ export function Articles() {
                   <p className="mt-2 text-sm text-muted-foreground leading-relaxed flex-1">{a.summary}</p>
                   <div className="mt-4 text-xs text-muted-foreground">{a.source} · {formatDate(a.createdAt.slice(0, 10))}</div>
                   {a.sourceUrl && (
-                    <a href={a.sourceUrl} target="_blank" rel="noopener noreferrer" className="mt-3 inline-flex items-center gap-1.5 text-sm text-[#9C2B2F] hover:underline" style={{ fontWeight: 500 }}>
+                    <a href={safeUrl(a.sourceUrl)} target="_blank" rel="noopener noreferrer" className="mt-3 inline-flex items-center gap-1.5 text-sm text-[#9C2B2F] hover:underline" style={{ fontWeight: 500 }}>
                       {i.read} <ExternalLink className="size-3.5" />
                     </a>
                   )}
